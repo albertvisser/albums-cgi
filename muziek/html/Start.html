@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="http://muziek.pythoneer.nl/muziek.css" type="text/css" />
+  <title></title>
+</head>
+<body>
+<!-- kop -->
+<!-- fout -->
+<!-- form t.b.v. opgeven selectie van studio albums -->
+  <form action="http://muziek.pythoneer.nl/cgi-bin/Muziek_Select.py" method="post">
+      <div>
+		<span class="left3">Selecteer studio-albums op:</span>
+        <span class="right3">
+          <input type="radio" name="selZoekS" value="None" />1. Niet zoeken, alles tonen<br />
+          <input type="radio" name="selZoekS" value="artiest" checked="checked" />2. Uitvoerende:
+          <select name="selArtiest">
+<!-- artiest id,naam					 <option value="%s">%s</option> -->
+          </select>
+          <br />
+          <input type="radio" name="selZoekS" value="titel" />3. Titel<br />
+<!--          <input type="radio" name="selZoekS" id="selZoek" value = "opname">Opname<br /> -->
+          <input type="radio" name="selZoekS" value="producer" />4. Producer<br />
+          <input type="radio" name="selZoekS" value="credits" />5. Vermelding in Credits<br />
+          <input type="radio" name="selZoekS" value="bezetting" />6. Vermelding in Bezetting<br />
+          Zoektekst voor 3 - 6: <input type="text" name="txtZoekS" size="60" maxlength="60" />
+        </span>
+      </div>
+      <div> &nbsp; </div>
+      <div>
+        <span class="left">
+           sorteer op:
+        </span>
+        <span class="right">
+          <select name="selSortS">
+              <option value="artiest">Uitvoerende</option>
+              <option value="titel">Titel</option>
+              <option selected="selected" value="jaar">Jaar</option>
+<!--              <option value = "opname">Opname</option> -->
+              <option value="geen">Niets</option>
+           </select>
+        </span>
+      </div>
+      <div> &nbsp;</div>
+      <div>
+        <span class="left"> </span>
+        <span class="right">
+          <input type="hidden" name="hStudio" id="hStudio" value="studio" />
+          <input type="submit" value="Selectie uitvoeren" />
+          <input type="submit" value="Nieuw album opvoeren" onclick="'document.location='http://muziek.pythoneer.nl/cgi-bin/Muziek_Detail.py?hNieuw=Nieuw&amp;hStudioN=studio'"/>
+        </span>
+      </div>
+  </form>
+	<br />
+<!-- form t.b.v. opvoeren nieuw studio album -->
+  <br />
+  <hr />
+<!-- form t.b.v. opgeven selectie van live opnames -->
+  <form action="http://muziek.pythoneer.nl/cgi-bin/Muziek_Select.py" method="post">
+      <div>
+		<span class="left3">Selecteer concert-opnames op:</span>
+        <span class="right3">
+          <input type="radio" name="selZoekL" value="None" />1. Niet zoeken, alles tonen<br />
+          <input type="radio" name="selZoekL" value="artiest" checked="checked" />2. Uitvoerende:
+          <select name="selArtiest">
+<!-- artiest id,naam					 <option value="%s">%s</option> -->
+		  </select><br />
+<!--          <input type="radio" name="selZoekL" id="selZoek" value = "opname">Opname<br /> -->
+          <input type="radio" name="selZoekL" value="locatie" />3. Locatie<br />
+          <input type="radio" name="selZoekL" value="datum" />4. Datum<br />
+          <input type="radio" name="selZoekL" value="bezetting" />5. Vermelding in Bezetting<br />
+          Zoektekst voor 3 - 5: <input type="text" name="txtZoekL" size="60" maxlength="60" />
+        </span>
+      </div>
+      <div> &nbsp; </div>
+      <div>
+        <span class="left">
+           sorteer op:
+        </span>
+        <span class="right">
+          <select name="selSortL">
+              <option value="artiest">Uitvoerende</option>
+              <option value="locatie">Locatie</option>
+              <option selected="selected" value="datum">Datum</option>
+<!--              <option value = "opname">Opname</option> -->
+              <option value="geen">Niets</option>
+           </select>
+        </span>
+      </div>
+      <div> &nbsp;</div>
+      <div>
+        <span class="left"> </span>
+        <span class="right">
+          <input type="hidden" name="hLive" id="hLive" value="live" />
+          <input type="submit" value="Selectie uitvoeren" />
+          <input type="button" value="Nieuwe opname opvoeren" onclick="document.location='http://muziek.pythoneer.nl/cgi-bin/Muziek_Detail.py?hNieuw=Nieuw&amp;hLiveN=studio'"/>
+        </span>
+      </div>
+  </form>
+	<br />
+<!-- form t.b.v. opvoeren nieuwe live opname -->
+  <br />
+  <hr />
+      <div> &nbsp;</div>
+      <div>
+        <span class="left"> </span>
+        <span class="right">
+          <input type="button" value="Nieuwe artiest opvoeren" onclick="document.location='http://muziek.pythoneer.nl/cgi-bin/Muziek_Artiesten.py?hNieuw=Nieuw'"/>
+          <input type="button" value="Lijst artiesten / artiest wijzigen" onclick="document.location='http://muziek.pythoneer.nl/cgi-bin/Muziek_Artiesten.py'"/>
+        </span>
+      </div>
+  <br />
+  <br />
+  <p>
+    <a href="http://validator.w3.org/check/referer"><img style="border: 0"
+        src="http://www.pythoneer.nl/images/valid-xhtml10.gif"
+        alt="Valid XHTML 1.0!" height="31" width="88" /></a>
+   </p>
+</body>
+</html>

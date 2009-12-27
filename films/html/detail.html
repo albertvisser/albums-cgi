@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+  <title>FilmDetail</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="http://films.pythoneer.nl/films.css" type="text/css" />
+</head>
+<body>
+  <h1><a name="begin">Magiokis Films!</a></h1>
+  <form action="http://films.pythoneer.nl/" method="post">
+  <div class="wide">
+     <hr />
+     <span class="left">
+       <label class="small" for="titel">Titel:</label>
+     </span>
+     <span class="right">
+<!-- titel     <input type="text" name="titel" id="titel" size="60" maxlength="80" value="%s"/><br /> -->
+     </span>
+  </div>
+  <div class="wide">&nbsp;</div>
+  <div class="wide">
+     <span class="left">
+       <label class="small" for="van">Van:</label>
+     </span>
+     <span class="mid">
+<!-- van     <input type="text" name="van" id = "van" size="40" maxlength="80" value="%s" /> -->
+     </span>
+     <span class="mid">
+       <label class="small" for="jaar">Uit jaar:</label>
+<!-- jaar     <input type="text" name="jaar" id="jaar" size="10" maxlength="10" value="%s" /><br /> -->
+     </span>
+  </div>
+  <div class="wide">&nbsp;</div>
+  <div class="wide">
+     <span class="left">
+       <label class="small" for="genre">Genre:</label>
+     </span>
+     <span class="right">
+      <select name="genre" id="genre">
+        <option value=""> </option>
+        <option value="Actie"> Actie</option>
+        <option value="Comedy"> Comedy</option>
+        <option value="Drama"> Drama</option>
+        <option value="Fantasy"> Fantasy</option>
+        <option value="Horror"> Horror</option>
+        <option value="Romantiek"> Romantiek</option>
+        <option value="Satire"> Satire</option>
+        <option value="Science-Fiction"> Science-Fiction</option>
+        <option value="Western"> Western</option>
+      </select>
+    </span>
+  </div>
+  <div class="wide">&nbsp;</div>
+  <div class="wide">
+     <hr />
+     <span>
+       <label for="met">Met:</label>
+       <br />
+       <textarea name="met" id="met" cols="60" rows="3">
+<!-- met -->
+      </textarea>'
+       <br />
+       <br />
+       <label for="over">Over:</label>
+       <br />
+       <textarea name="over" id="over" cols="60" rows="3">
+<!-- over -->
+      </textarea>'
+       <br />
+       <br />
+     </span>
+  </div>
+  <div class="wide">&nbsp;</div>
+  <div class="wide">
+     <hr />
+     <br />
+     <span class="left2">
+       <label class="medium" for="loc">Opgenomen op:</label>
+     </span>
+     <span style="float: left; width: 20%">
+<!-- loc     <input type="text" name="loc" id="loc" size="10" maxlength="10" value="%s" /> -->
+     </span>
+     <span style="float: left; width: 66%">
+       <label class="medium" for="soort" id="soort">Soort opname:</label>
+       <input type="radio" name="soort" id="soort2" value="SP" />SP
+       <input type="radio" name="soort" id="soort3" value="LP" />LP
+     </span>
+  </div>
+  <div class="wide">&nbsp;</div>
+  <div class="wide">
+     <span class="left2">
+       <label class="medium" for="duur">Duurt:</label>
+     </span>
+     <span class="right2">
+<!-- duur     <input type="text" name="duur" id= "duur" size="10" maxlength="10" value="%s" /> min.<br /> -->
+     </span>
+  </div>
+  <div class="wide">&nbsp;</div>
+  <div class="wide">
+     <span class="left2">
+       <label class="medium" for="taal">Taal:</label>
+     </span>
+     <span class="right2">
+       <input type="radio" name="taal" id="taal" value="NL" />Nederlands
+       <input type="radio" name="taal" id="taal2" value="E/O" />Engels (ondertiteld)
+       <input type="radio" name="taal" id="taal3" value="E" />Engels
+     </span>
+   </div>
+   <div class="wide">&nbsp;</div>
+   <div class="wide">
+     <hr />
+     <br />
+<!-- wijzigO <input type="hidden" name="hWijzig" value="%s" /> -->
+     <input type="submit" value="Update" />
+     <input type="button" value="Reload" />
+     <input type="button" value="Terug naar selectie" />
+   </div>
+  </form>
+  <p>
+    <a href="http://validator.w3.org/check/referer"><img style="border: 0"
+        src="http://www.pythoneer.nl/images/valid-xhtml10.gif"
+        alt="Valid XHTML 1.0!" height="31" width="88" /></a>
+  </p>
+</body>
+</html>

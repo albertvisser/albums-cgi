@@ -1,0 +1,123 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+  <title>Muziek Detail</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="http://muziek.pythoneer.nl/muziek.css" type="text/css" />
+</head>
+<body>
+<!-- kop -->
+  <div class="wide">
+    <span>
+     <form action="http://muziek.pythoneer.nl/cgi-bin/muziek_detail.py" method="post">
+      Snel naar een ander concert van deze artiest:
+      <select name="selAlbum" id="selAlbum" onchange="form.submit()">
+       <option value="0">-- selecteer titel --</option>
+      </select>
+<!--      <input type="hidden" name="hType" value="%s" /> -->
+     </form>
+    </span>
+  </div>
+<!------------- basisgegevens album -------------->
+  <form action="http://muziek.pythoneer.nl/cgi-bin/muziek_detail.py" method="post">
+  <div class="wide">
+     <hr />
+     <span class="wide label vet">Concertgegevens:</span><br/><br/>
+     <span class="left">
+       <label class="small" for="txtArtiest">Artiest:</label>
+     </span>
+     <span class="right">
+<!-- artiest   <input type="text" name="txtArtiest" id="txtArtiest" size="25" maxlength="60" value="%s"/> -->
+     </span>
+  </div>
+<!--  <div class="wide">&nbsp;</div> -->
+  <div class="wide">
+     <span class="left">
+       <label class="small" for="txtLoc">&nbsp;</label>
+     </span>
+     <span class="right">
+<!-- locatie     <input type="text" name="txtLoc" id="txtLoc" size="40" maxlength="80" value="%s"/> -->
+<!-- datum      <input type="text" name="txtDatum" id="txtDatum" size="25 maxlength="30" value="%s" /> -->
+     <br/></span>
+  </div>
+<!-- bezetting -->
+  <div class="wide">
+     <span class="left">
+       <label for="txtBezetting">Bezetting:</label>
+     </span>
+     <span class="right">
+       <textarea name="txtBezetting" id="txtBezetting" cols="60" rows="4">%s</textarea>
+     </span>
+  </div>
+<!-- endbezetting -->
+<!------------ submit --------------------->
+   <div class="wide">
+   <br/>
+<!-- id hIdAlbum <input type="hidden" name="hWijzig" id="hWijzig" value="%s" /> -->
+<!-- type hTypeAlbum <input type="hidden" name="hWijzig" id="hWijzig" value="%s" /> -->
+     <input type="submit" value="Wijzigen" />
+<!-- wijzigO <input type="hidden" name="hWijzig" value="%s" /> -->
+     <input type="button" value="Waarden terugzetten" />
+     <br/>N.B. "Waarden terugzetten" kan alleen zolang de knop "wijzig" nog niet gebruikt is.<br/>Het komt eigenlijk op hetzelfde neer als de "back" button van de browser.
+   </div>
+  </form>
+<!------------- tracks -------------->
+  <div class="wide">
+     <hr />
+<!-- startTrackList -->
+    <div class="wide"><span class="left label vet">Tracks:</span>
+     <span class="right"><input type="button" value="nieuwe toevoegen"/>
+     <input type="button" value="Waarden terugzetten" onclick="history.go(-1)"/></span><br/><br/>
+    </div>
+    <div class="wide box">
+       <form class="regel" action="%smuziek_wijzigTrack.py" method="post">
+      <span class="l12 cntr">&nbsp;&nbsp;&nbsp;&nbsp;%s.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+      <span>
+        <input type="hidden" name="hAlbumId" value="%s" />
+        <input type="hidden" name="hAlbumType" value="%s" />
+        <input type="hidden" name="hTrackId" value="%s" />
+        <input type="text" name="txtTrack%s" size="80" maxlength="200" value="%s"/>
+        <input type="submit" value="wijzig"/>
+      </span>
+       </form><br/>
+    </div>
+<!-- endTrackList -->
+<!-- <form action="http://muziek.pythoneer.nl/cgi-bin/muziek_tracklijst.py" method="post"> -->
+<!-- <!-- id hIdTracks <input type="hidden" name="hWijzig" id="hWijzig" value="%s" /> -->
+<!-- <!-- type hTypeTracks <input type="hidden" name="hWijzig" id="hWijzig" value="%s" /> -->
+<!-- <!-- update      <input type="submit" abled value="Tracks aanpassen" /> -->
+<!-- </form> -->
+  </div>
+<!------------- opnames -------------->
+  <div class="wide">
+     <hr />
+<!-- startOpnList -->
+    <div class="wide"><span class="left label vet">Opnames:</span>
+     <span class="right"><input type="button" value="nieuwe toevoegen"/>
+     <input type="button" value="Waarden terugzetten" onclick="history.go(-1)"/></span></div>
+    <div class="wide"><span class="left cntr">%s.</span>
+     <span class="right">
+      <form action="http://muziek.pythoneer.nl/cgi-bin/muziek_wijzigOpname.py" method="post">
+      <input type="hidden" name="hAlbumId" value="%s" />
+      <input type="hidden" name="hAlbumType" value="%s" />
+      <input type="hidden" name="hOpnId" value="%s" />
+      <input type="text" name="txtOpn%s" size="80" maxlength="200" value="%s"/>
+      <input type="submit" value="wijzig"/>
+      </form>
+     </span></div>
+   </div>
+<!-- endOpnList -->
+<!-- <form action="http://muziek.pythoneer.nl/cgi-bin/muziek_Opnamelijst.py" method="post"> -->
+<!-- <!-- id hIdOpnames <input type="hidden" name="hWijzig" id="hWijzig" value="%s" /> -->
+<!-- <!-- type hTypeOpnames <input type="hidden" name="hWijzig" id="hWijzig" value="%s" /> -->
+<!-- <!-- update      <input type="submit" abled value="Opnames aanpassen" /> -->
+<!-- </form> -->
+   </div>
+<!------------- einde -------------->
+  <p>
+    <a href="http://validator.w3.org/check/referer"><img style="border: 0"
+        src="http://www.pythoneer.nl/images/valid-xhtml10.gif"
+        alt="Valid XHTML 1.0!" height="31" width="88" /></a>
+  </p>
+</body>
+</html>

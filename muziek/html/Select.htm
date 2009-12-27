@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+  <title>Muziek Selectie</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="http://muziek.pythoneer.nl/muziek.css" type="text/css" />
+</head>
+<body>
+  <h1><a name="begin">Magiokis Muziek!</a></h1>
+  <hr />
+<!-- selectie -->
+  <hr/>
+    <div>
+      <span class="left4">&nbsp;</span>
+      <span class="right4">Kies een album uit de lijst: </span>
+      <span class="left4">&nbsp;</span>
+      <span class="right4">
+      <form class="regel" action="http://muziek.pythoneer.nl/cgi-bin/Muziek_Detail.py" method="post">
+        <input type="text" name="txtTitel" value = "%s" size="60" />
+        <input type="hidden" name="hId" value="%s" />
+        <input type="hidden" name="hType" value="%s"/>
+        <input type="submit" value="Toon" />
+      </form><br>
+      </span>
+    </div>
+<!--  <p>
+    <a href="http://validator.w3.org/check/referer"><img style="border: 0"
+        src="http://www.pythoneer.nl/images/valid-xhtml10.gif"
+        alt="Valid XHTML 1.0!" height="31" width="88" /></a>
+  </p> -->
+  </body>
+</html>

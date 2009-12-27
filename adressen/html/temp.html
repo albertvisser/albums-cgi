@@ -1,0 +1,769 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="http://adr.pythoneer.nl/adressen.css" type="text/css" />
+  <title>Adressen selectie</title>
+</head>
+<body>
+  <table width="100%" border="1">
+    <tr>
+      <th width="30%">Naam</th>
+      <th width="30%">Adres</th>
+      <th width="20%">Telefoon/Email</th>
+      <th width="10%">Geboortedatum</th>
+      <th width="10%"><input type="button" value="Nieuw" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=0'"></th>
+    </tr>
+    <tr>
+    <form action="http://adr.pythoneer.nl/cgi-bin/adres_wijzig.py" method="post">
+      <td valign="top"><input type="text" name="tnaam" id="tnaam" /></td>
+      <td valign="top"><input type="text" name="tstraat" id="tstraat" /><br /><input type="text" name="tpostcode" id="tpostcode" size="8" /><input type="text" name="tplaats" id="tplaats" /></td>
+      <td valign="top"><input type="text" name="ttel" id="ttel" size="10" /><br /><input type="text" name="temail" id="temail" size="20" /></td>
+      <td valign="top"><input type="text" name="tdag" id="tdag" size="2" />-<input type="text" name="tmaand" id="tmaand" size="2" />-<input type="text" name="tjaar" id="tjaar" size="4" /></td>
+      <td valign="top"><input type="hidden" name="hId" id="hId" value="0" /><input type="submit" value="Aanpassen" /><br /><input type="button" value="Terugzetten" onclick="javascript:history.go(-1)" /></td>
+    </form>
+    </tr>
+    <tr>
+      <td valign="top">Thomas Boot</td>
+      <td valign="top">Venkelstraat 31<br />7322 KS APELDOORN</td>
+      <td valign="top">3667439<br />&nbsp;</td>
+      <td valign="top">04-12-1995</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=1'">
+    </tr>
+    <tr>
+      <td valign="top">Liesbeth Klein Kranenbarg</td>
+      <td valign="top">Heliosstraat 53 B<br />7321 ED APELDOORN</td>
+      <td valign="top">3601125<br />&nbsp;</td>
+      <td valign="top">24-02-1996</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=2'">
+    </tr>
+    <tr>
+      <td valign="top">Kylie van Loo</td>
+      <td valign="top">Venkelstraat 141<br />7322 KR APELDOORN</td>
+      <td valign="top">3672030<br />&nbsp;</td>
+      <td valign="top">22-03-1996</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=3'">
+    </tr>
+    <tr>
+      <td valign="top">Ricky Mulderij</td>
+      <td valign="top">Kersenlaan 50<br />7322 SE APELDOORN</td>
+      <td valign="top">8440913<br />&nbsp;</td>
+      <td valign="top">14-07-1996</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=4'">
+    </tr>
+    <tr>
+      <td valign="top">Timon de Vries</td>
+      <td valign="top">Morellenlaan 9<br />7322 JS APELDOORN</td>
+      <td valign="top">3665229<br />&nbsp;</td>
+      <td valign="top">28-01-1996</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=5'">
+    </tr>
+    <tr>
+      <td valign="top">Niels de Wilde</td>
+      <td valign="top">Venkelstraat 12<br />7322 XX APELDOORN</td>
+      <td valign="top">3669392<br />&nbsp;</td>
+      <td valign="top">21-04-1996</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=6'">
+    </tr>
+    <tr>
+      <td valign="top">Max van Aarssen</td>
+      <td valign="top">Het Kasteel 286<br />7325 PS APELDOORN</td>
+      <td valign="top">3600473<br />&nbsp;</td>
+      <td valign="top">01-05-1995</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=7'">
+    </tr>
+    <tr>
+      <td valign="top">Sally van den Berg</td>
+      <td valign="top">Mispellaan 41<br />7322 HK APELDOORN</td>
+      <td valign="top">3667907<br />&nbsp;</td>
+      <td valign="top">16-10-1994</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=8'">
+    </tr>
+    <tr>
+      <td valign="top">Marian Bosman</td>
+      <td valign="top">Welgelegenlaan 21<br />7321 AR APELDOORN</td>
+      <td valign="top">3669875<br />&nbsp;</td>
+      <td valign="top">03-01-1995</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=9'">
+    </tr>
+    <tr>
+      <td valign="top">Ruben Fakkert</td>
+      <td valign="top">Boerhaavestraat 56<br />7316 JD APELDOORN</td>
+      <td valign="top">5224832<br />&nbsp;</td>
+      <td valign="top">18-02-1995</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=10'">
+    </tr>
+    <tr>
+      <td valign="top">Eline Goossens</td>
+      <td valign="top">Duizendschoon 15<br />7322 GZ APELDOORN</td>
+      <td valign="top">3010847<br />&nbsp;</td>
+      <td valign="top">02-03-1995</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=11'">
+    </tr>
+    <tr>
+      <td valign="top">Eline Groen</td>
+      <td valign="top">Anna Bijnsring 238<br />7321 HN APELDOORN</td>
+      <td valign="top">3668763<br />&nbsp;</td>
+      <td valign="top">02-07-1995</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=12'">
+    </tr>
+    <tr>
+      <td valign="top">Brechtje Moen</td>
+      <td valign="top">Oud Veldzichtlaan 25<br />7322 RT APELDOORN</td>
+      <td valign="top">3663792<br />&nbsp;</td>
+      <td valign="top">25-06-1995</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=13'">
+    </tr>
+    <tr>
+      <td valign="top">Jasper Broere</td>
+      <td valign="top">Herculesstraat 29<br />7321 ER APELDOORN</td>
+      <td valign="top">3665933<br />&nbsp;</td>
+      <td valign="top">19-07-1993</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=14'">
+    </tr>
+    <tr>
+      <td valign="top">Jeroen Groeneveld</td>
+      <td valign="top">Pythagorasstraat 96<br /> APELDOORN</td>
+      <td valign="top">5349520<br />&nbsp;</td>
+      <td valign="top">14-06-1994</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=15'">
+    </tr>
+    <tr>
+      <td valign="top">Matthijs Hulsebos</td>
+      <td valign="top">Venkelstraat 45<br />7322  KT APELDOORN</td>
+      <td valign="top">3669505<br />&nbsp;</td>
+      <td valign="top">02-05-1994</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=16'">
+    </tr>
+    <tr>
+      <td valign="top">Jesse Klaassen</td>
+      <td valign="top">Ledaplantsoen 35<br />7321  ES APELDOORN</td>
+      <td valign="top">3666061<br />&nbsp;</td>
+      <td valign="top">24-11-1993</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=17'">
+    </tr>
+    <tr>
+      <td valign="top">Anna van Luttikhuizen</td>
+      <td valign="top">Mansardehof 42<br />7325  VB APELDOORN</td>
+      <td valign="top">3662229<br />&nbsp;</td>
+      <td valign="top">23-11-1993</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=18'">
+    </tr>
+    <tr>
+      <td valign="top">Lisa Sambo</td>
+      <td valign="top">Aristotelesstraat 593<br />7323  NL APELDOORN</td>
+      <td valign="top">3671660<br />&nbsp;</td>
+      <td valign="top">08-09-1994</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=19'">
+    </tr>
+    <tr>
+      <td valign="top">Nicole Visser</td>
+      <td valign="top">Agathastraat 18<br />7311  RD APELDOORN</td>
+      <td valign="top">3782505<br />&nbsp;</td>
+      <td valign="top">05-05-1994</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=20'">
+    </tr>
+    <tr>
+      <td valign="top">Iris Boon</td>
+      <td valign="top">Veenhuizerweg 46 b<br />7312  CX APELDOORN</td>
+      <td valign="top">3664922<br />&nbsp;</td>
+      <td valign="top">29-03-1993</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=21'">
+    </tr>
+    <tr>
+      <td valign="top">Bart Bosman</td>
+      <td valign="top">Weigelegenlaan 21<br />7321  AR APELDOORN</td>
+      <td valign="top">3669875<br />&nbsp;</td>
+      <td valign="top">18-09-1992</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=22'">
+    </tr>
+    <tr>
+      <td valign="top">Nynke Diks</td>
+      <td valign="top">Gentiaanstraat 590<br />7322  CL APELDOORN</td>
+      <td valign="top">3669910<br />&nbsp;</td>
+      <td valign="top">03-09-1993</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=23'">
+    </tr>
+    <tr>
+      <td valign="top">Raoul Fakkert</td>
+      <td valign="top">Boerhaavestraat 56<br />7316  JD APELDOORN</td>
+      <td valign="top">5224832<br />&nbsp;</td>
+      <td valign="top">08-04-1992</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=24'">
+    </tr>
+    <tr>
+      <td valign="top">Lieke Kalma</td>
+      <td valign="top">Trekweg 61 <br />7322  HP APELDOORN</td>
+      <td valign="top">3669232<br />&nbsp;</td>
+      <td valign="top">29-05-1993</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=25'">
+    </tr>
+    <tr>
+      <td valign="top">Amber Kors</td>
+      <td valign="top">Anna Bijnsring 258<br />7321  HM APELDOORN</td>
+      <td valign="top">3670617<br />&nbsp;</td>
+      <td valign="top">17-06-1992</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=26'">
+    </tr>
+    <tr>
+      <td valign="top">Mike van Megen</td>
+      <td valign="top">Kervelstraat 52<br />7322  PX APELDOORN</td>
+      <td valign="top">3666643<br />&nbsp;</td>
+      <td valign="top">17-08-1993</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=27'">
+    </tr>
+    <tr>
+      <td valign="top">Patrick Roel</td>
+      <td valign="top">Loseweg 150<br />7315  HB APELDOORN</td>
+      <td valign="top">5218588<br />&nbsp;</td>
+      <td valign="top">09-12-1992</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=28'">
+    </tr>
+    <tr>
+      <td valign="top">Renee Visser</td>
+      <td valign="top">Agathastraat 18<br />7311  RD APELDOORN</td>
+      <td valign="top">3782500<br />reneeemma@myrealbox.com</td>
+      <td valign="top">24-01-1993</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=29'">
+    </tr>
+    <tr>
+      <td valign="top">Mathijs Dijkstra</td>
+      <td valign="top">Burglaan 28<br />7314  BM APELDOORN</td>
+      <td valign="top">3662804<br />mathijs_dijkstra@hotmail.com</td>
+      <td valign="top">07-03-1992</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=30'">
+    </tr>
+    <tr>
+      <td valign="top">Joost Kloppers</td>
+      <td valign="top">Houttuinen Noord 30<br />7325  RG APELDOORN</td>
+      <td valign="top">5763969<br />&nbsp;</td>
+      <td valign="top">15-06-1991</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=31'">
+    </tr>
+    <tr>
+      <td valign="top">Bram Slagter</td>
+      <td valign="top">De Tol 62<br />3321  KH APELDOORN</td>
+      <td valign="top">3603968<br />&nbsp;</td>
+      <td valign="top">30-11-1991</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=32'">
+    </tr>
+    <tr>
+      <td valign="top">Nicky ten Tije</td>
+      <td valign="top">Duivenlaan 18<br />7331  AS APELDOORN</td>
+      <td valign="top">5425453<br />&nbsp;</td>
+      <td valign="top">08-01-1992</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=33'">
+    </tr>
+    <tr>
+      <td valign="top">Michiel den Uijl</td>
+      <td valign="top">Anijsstraat 76<br />7322  PS Apeldoorn</td>
+      <td valign="top">3663032<br />&nbsp;</td>
+      <td valign="top">13-02-1992</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=34'">
+    </tr>
+    <tr>
+      <td valign="top">Liesbeth van der Veen</td>
+      <td valign="top">Bosweg 73<br />7314  EB APELDOORN</td>
+      <td valign="top">3552557<br />Liesbethvdveen_2@hotmail.com</td>
+      <td valign="top">20-12-1991</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=35'">
+    </tr>
+    <tr>
+      <td valign="top">Marijke de Weerd</td>
+      <td valign="top">De Oldehofstede 25<br />8171  KL VAASSEN</td>
+      <td valign="top">0578-574357 574507<br />&nbsp;</td>
+      <td valign="top">20-12-1991</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=36'">
+    </tr>
+    <tr>
+      <td valign="top">Iris Wolvers</td>
+      <td valign="top">Anna Bijnsring 124<br />7321  EJ APELDOORN</td>
+      <td valign="top">3603978<br />Iriswolfie@hotmail.com</td>
+      <td valign="top">10-09-1992</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=37'">
+    </tr>
+    <tr>
+      <td valign="top">Lisa van As</td>
+      <td valign="top">Trekveg 56<br />7322 HS APELDOORN</td>
+      <td valign="top">3667340<br />&nbsp;</td>
+      <td valign="top">20-01-1991</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=38'">
+    </tr>
+    <tr>
+      <td valign="top">Jeroen Bosman</td>
+      <td valign="top">Welgelegenlaan 21<br />7321 AR APELDOORN</td>
+      <td valign="top">3669875<br />&nbsp;</td>
+      <td valign="top">30-10-1990</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=39'">
+    </tr>
+    <tr>
+      <td valign="top">Nadine Colon</td>
+      <td valign="top">Zilversmidshoeve 114<br />7326 RJ Apeldoorn</td>
+      <td valign="top">3601898<br />&nbsp;</td>
+      <td valign="top">30-06-1991</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=40'">
+    </tr>
+    <tr>
+      <td valign="top">Ivo Diks</td>
+      <td valign="top">Schembloem 32<br />7322 TP APELDOORN</td>
+      <td valign="top">3668357<br />&nbsp;</td>
+      <td valign="top">07-10-1990</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=41'">
+    </tr>
+    <tr>
+      <td valign="top">Rita Hachmang</td>
+      <td valign="top">Venkelstraat 19<br />7322 KR APELDOORN</td>
+      <td valign="top">3661152<br />&nbsp;</td>
+      <td valign="top">03-02-1991</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=42'">
+    </tr>
+    <tr>
+      <td valign="top">Lies van Harten</td>
+      <td valign="top">Toemalijnstraat 11<br />7314 ID APELDOORN</td>
+      <td valign="top">3562170<br />&nbsp;</td>
+      <td valign="top">11-10-1990</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=43'">
+    </tr>
+    <tr>
+      <td valign="top">Djoeke Hupkens</td>
+      <td valign="top">Parelvissersstraat 697<br />7323 CT APELDOORN</td>
+      <td valign="top">3669731<br />&nbsp;</td>
+      <td valign="top">15-10-1990</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=44'">
+    </tr>
+    <tr>
+      <td valign="top">Leanne Jansen</td>
+      <td valign="top">Venkelstraat 6<br />7322 XX APELDOORN</td>
+      <td valign="top">3669060<br />&nbsp;</td>
+      <td valign="top">07-10-1990</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=45'">
+    </tr>
+    <tr>
+      <td valign="top">Rob Janssen</td>
+      <td valign="top">Kruizemuntstraat 729<br />7322 MD APELDOORN</td>
+      <td valign="top">3666093<br />&nbsp;</td>
+      <td valign="top">01-10-1990</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=46'">
+    </tr>
+    <tr>
+      <td valign="top">Geeke Overveide</td>
+      <td valign="top">Groenoordlaan 4<br />7322 HW Apeldoorn</td>
+      <td valign="top">3671294<br />&nbsp;</td>
+      <td valign="top">27-06-1991</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=47'">
+    </tr>
+    <tr>
+      <td valign="top">Rosie Roelofs</td>
+      <td valign="top">J.van der Waalsingel 4<br />7321 JM APELDOORN</td>
+      <td valign="top">3662550<br />&nbsp;</td>
+      <td valign="top">06-06-1991</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=48'">
+    </tr>
+    <tr>
+      <td valign="top">Marjolein Rombouts</td>
+      <td valign="top">Voltairestraat 55<br />7323 GK APELDOORN</td>
+      <td valign="top">3670014<br />&nbsp;</td>
+      <td valign="top">23-05-1991</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=49'">
+    </tr>
+    <tr>
+      <td valign="top">Robin Schruijer</td>
+      <td valign="top">Gentiaanstraat 81<br />7322 SC APELDOORN</td>
+      <td valign="top">3660950<br />&nbsp;</td>
+      <td valign="top">29-04-1991</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=50'">
+    </tr>
+    <tr>
+      <td valign="top">Nina Wesselink</td>
+      <td valign="top">Pluviusstraat 19<br />7321 EM APELDOORN</td>
+      <td valign="top">3660415<br />&nbsp;</td>
+      <td valign="top">12-03-1991</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=51'">
+    </tr>
+    <tr>
+      <td valign="top">Kerwin Swart</td>
+      <td valign="top">Kanaal Noord 85 D<br />7311 MK Apeldoorn</td>
+      <td valign="top">5221137<br />&nbsp;</td>
+      <td valign="top">14-02-1993</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=52'">
+    </tr>
+    <tr>
+      <td valign="top">Dante Eggermont</td>
+      <td valign="top">Elsweg 57<br />7311 GV Apeldoorn</td>
+      <td valign="top">5791234<br />&nbsp;</td>
+      <td valign="top">12-04-1993</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=53'">
+    </tr>
+    <tr>
+      <td valign="top">Vincent Lapeyre</td>
+      <td valign="top">Wolweg 30<br />7312 BZ Apeldoorn</td>
+      <td valign="top">3550925<br />&nbsp;</td>
+      <td valign="top">12-04-1993</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=54'">
+    </tr>
+    <tr>
+      <td valign="top">Elise de Vries</td>
+      <td valign="top">Venkelstraat 33<br />7322 KS Apeldoorn</td>
+      <td valign="top">3666908<br />&nbsp;</td>
+      <td valign="top">09-09-1993</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=55'">
+    </tr>
+    <tr>
+      <td valign="top">Lara van Renssen</td>
+      <td valign="top">Bremweg 5<br />7245 SH Laren</td>
+      <td valign="top">&nbsp;<br />&nbsp;</td>
+      <td valign="top">12-08-1993</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=56'">
+    </tr>
+    <tr>
+      <td valign="top">Tim Miedema</td>
+      <td valign="top">Struikheide 8<br />8445 SE Heerenveen</td>
+      <td valign="top">0513-633312<br />&nbsp;</td>
+      <td valign="top">&nbsp;</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=57'">
+    </tr>
+    <tr>
+      <td valign="top">Lisa Dijkman</td>
+      <td valign="top">Laurierstraat 36<br />7322 RD APELDOORN</td>
+      <td valign="top">3663848<br />&nbsp;</td>
+      <td valign="top">21-04-1993</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=58'">
+    </tr>
+    <tr>
+      <td valign="top">Vivian Heijnen</td>
+      <td valign="top">Kalmoesstraat 46<br />7322 NV APELDOORN</td>
+      <td valign="top">3668672<br />&nbsp;</td>
+      <td valign="top">09-08-1993</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=59'">
+    </tr>
+    <tr>
+      <td valign="top">Ewout Holtrigter</td>
+      <td valign="top">Huittuinen Noord 41<br />7325 RE APELDOORN</td>
+      <td valign="top">3661788<br />&nbsp;</td>
+      <td valign="top">03-02-1993</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=60'">
+    </tr>
+    <tr>
+      <td valign="top">Erwin Janssen</td>
+      <td valign="top">Kruizemuntstraat 729<br />7322 MD APELDOORN</td>
+      <td valign="top">3666093<br />&nbsp;</td>
+      <td valign="top">06-01-1993</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=61'">
+    </tr>
+    <tr>
+      <td valign="top">Malouke Meijer</td>
+      <td valign="top">Carry van Bruggenstr 2<br />7321 JL APELDOORN</td>
+      <td valign="top">3604925<br />&nbsp;</td>
+      <td valign="top">26-03-1993</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=62'">
+    </tr>
+    <tr>
+      <td valign="top">Samantha Scheper</td>
+      <td valign="top">Waterlei 48<br />7325 GN APELDOORN</td>
+      <td valign="top">3662101<br />&nbsp;</td>
+      <td valign="top">19-02-1993</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=63'">
+    </tr>
+    <tr>
+      <td valign="top">Maarten Schraa</td>
+      <td valign="top">Reigersweg 94<br />7331 DR APELDOORN</td>
+      <td valign="top">5424978<br />&nbsp;</td>
+      <td valign="top">13-01-1993</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=64'">
+    </tr>
+    <tr>
+      <td valign="top">Justin Thoma</td>
+      <td valign="top">Kersenlaan 60<br />7322 SG APELDOORN</td>
+      <td valign="top">3663648<br />&nbsp;</td>
+      <td valign="top">20-05-1993</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=65'">
+    </tr>
+    <tr>
+      <td valign="top">Pieter Wassenaar</td>
+      <td valign="top">Herculesstraat 21<br />7321 EH APELDOORN</td>
+      <td valign="top">3663836<br />&nbsp;</td>
+      <td valign="top">10-07-1993</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=66'">
+    </tr>
+    <tr>
+      <td valign="top">Robin de Beer</td>
+      <td valign="top">Malrove 42<br /> 7322  GB APELDOORN</td>
+      <td valign="top">3670823<br />&nbsp;</td>
+      <td valign="top">10-07-1991</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=67'">
+    </tr>
+    <tr>
+      <td valign="top">Myrthe Bongers</td>
+      <td valign="top">Pinksterbloem 39<br />7322 GS APELDOORN</td>
+      <td valign="top">3667672<br />&nbsp;</td>
+      <td valign="top">23-10-1991</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=68'">
+    </tr>
+    <tr>
+      <td valign="top">Youri Bouhof</td>
+      <td valign="top">Zonnewende 115<br />7325 EN APELDOORN</td>
+      <td valign="top">5423202<br />&nbsp;</td>
+      <td valign="top">24-05-1992</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=69'">
+    </tr>
+    <tr>
+      <td valign="top">Frans Dekker</td>
+      <td valign="top">2e beukenlaan 21<br />7313 AP APELDOORN</td>
+      <td valign="top">3560195<br />&nbsp;</td>
+      <td valign="top">31-08-1992</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=70'">
+    </tr>
+    <tr>
+      <td valign="top">Tomas Geurts</td>
+      <td valign="top">Minervalaan 69<br />7321 DP APELDOORN</td>
+      <td valign="top">3661326<br />&nbsp;</td>
+      <td valign="top">09-05-1992</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=71'">
+    </tr>
+    <tr>
+      <td valign="top">Gerdien Hachmang</td>
+      <td valign="top">Venkelstraat 19<br />7322 KR APELDOORN</td>
+      <td valign="top">3661152<br />&nbsp;</td>
+      <td valign="top">05-02-1992</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=72'">
+    </tr>
+    <tr>
+      <td valign="top">Megan Hague</td>
+      <td valign="top">Salomonszegel 75<br />7322 ES APELDOORN</td>
+      <td valign="top">3663296<br />&nbsp;</td>
+      <td valign="top">13-02-1991</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=73'">
+    </tr>
+    <tr>
+      <td valign="top">Melanie Koster</td>
+      <td valign="top">Minervalaan 43<br />7321 DP APELDOORN</td>
+      <td valign="top">3660505<br />&nbsp;</td>
+      <td valign="top">27-07-1992</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=74'">
+    </tr>
+    <tr>
+      <td valign="top">Roy Peek</td>
+      <td valign="top">Homerusstraa5t 29<br />7323 PW APELDOORN</td>
+      <td valign="top">3669345<br />&nbsp;</td>
+      <td valign="top">16-11-1991</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=75'">
+    </tr>
+    <tr>
+      <td valign="top">Michiel Peters</td>
+      <td valign="top">Deventerstraat 392<br />7325 XV APELDOORN</td>
+      <td valign="top">3604833<br />&nbsp;</td>
+      <td valign="top">08-07-1992</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=76'">
+    </tr>
+    <tr>
+      <td valign="top">Mary-Ellen de Jong</td>
+      <td valign="top">Minervalaan 35<br />7321 DP APELDOORN</td>
+      <td valign="top">3666426<br />&nbsp;</td>
+      <td valign="top">09-08-1993</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=77'">
+    </tr>
+    <tr>
+      <td valign="top">Elize Koldenhof</td>
+      <td valign="top">Minervalaan 33<br />7321 DP APELDOORN</td>
+      <td valign="top">3665317<br />&nbsp;</td>
+      <td valign="top">02-08-1994</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=78'">
+    </tr>
+    <tr>
+      <td valign="top">Gijs van Mun</td>
+      <td valign="top">Grevelingen 4<br />7333 JA APELDOORN</td>
+      <td valign="top">5417576<br />&nbsp;</td>
+      <td valign="top">14-04-1994</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=79'">
+    </tr>
+    <tr>
+      <td valign="top">Marijn Peppelman</td>
+      <td valign="top">Drapeniersdonk 343<br />7326 AM APELDOORN</td>
+      <td valign="top">5414720<br />&nbsp;</td>
+      <td valign="top">07-05-1994</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=80'">
+    </tr>
+    <tr>
+      <td valign="top">Bas Wezenberg</td>
+      <td valign="top">Kruizemuntstraat 201<br />7322 LJ APELDOORN</td>
+      <td valign="top">3667748<br />&nbsp;</td>
+      <td valign="top">11-10-1993</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=81'">
+    </tr>
+    <tr>
+      <td valign="top">Timo de Beer</td>
+      <td valign="top">Malrove 42<br />7322 GB APELDOORN</td>
+      <td valign="top">3670823<br />&nbsp;</td>
+      <td valign="top">26-09-1993</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=82'">
+    </tr>
+    <tr>
+      <td valign="top">Ruben Fremouw</td>
+      <td valign="top">Mispellaan 5<br />7322 HK APELDOORN</td>
+      <td valign="top">3669113<br />&nbsp;</td>
+      <td valign="top">07-07-1993</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=83'">
+    </tr>
+    <tr>
+      <td valign="top">Sahin Bognetteau</td>
+      <td valign="top">Tormentilstraat 152<br />7322  KP APELDOORN</td>
+      <td valign="top">3669778<br />&nbsp;</td>
+      <td valign="top">08-09-1991</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=84'">
+    </tr>
+    <tr>
+      <td valign="top">Anouk Brouwer</td>
+      <td valign="top">Pelikaanlaan 16<br />7331  BP APELDOORN</td>
+      <td valign="top">3662597<br />&nbsp;</td>
+      <td valign="top">17-11-1991</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=85'">
+    </tr>
+    <tr>
+      <td valign="top">Boy van de Esschert</td>
+      <td valign="top">Deventerstraat 164<br />7321 CE APELDOORN</td>
+      <td valign="top">3670290<br />&nbsp;</td>
+      <td valign="top">31-03-1992</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=86'">
+    </tr>
+    <tr>
+      <td valign="top">Dylan Evers</td>
+      <td valign="top">Belle van Zuylenbrink 22<br />7321 NR APELDOORN</td>
+      <td valign="top">3662266<br />&nbsp;</td>
+      <td valign="top">23-03-1992</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=87'">
+    </tr>
+    <tr>
+      <td valign="top">Wikke Jansen</td>
+      <td valign="top">Gijsbrechtgaarde 312<br />7329 CE APELDOORN</td>
+      <td valign="top">5430156<br />&nbsp;</td>
+      <td valign="top">27-08-1991</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=88'">
+    </tr>
+    <tr>
+      <td valign="top">Bas Grootenhuis</td>
+      <td valign="top">Kamillestraat 23<br />7322 PL APELDOORN</td>
+      <td valign="top">3662370<br />&nbsp;</td>
+      <td valign="top">14-05-1991</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=89'">
+    </tr>
+    <tr>
+      <td valign="top">Jolein van der Sluis</td>
+      <td valign="top">Jachtlaan 263 E<br />7312 GP APELDOORN</td>
+      <td valign="top">3558432<br />&nbsp;</td>
+      <td valign="top">07-08-1992</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=90'">
+    </tr>
+    <tr>
+      <td valign="top">Joey Ham</td>
+      <td valign="top">Akkerwinde 62<br />7322 DK APELDOORN</td>
+      <td valign="top">3667124<br />&nbsp;</td>
+      <td valign="top">31-01-1994</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=91'">
+    </tr>
+    <tr>
+      <td valign="top">Michel Koldenhof</td>
+      <td valign="top">Minervalaan 33<br />7324 DP APELDOORN</td>
+      <td valign="top">3665317<br />&nbsp;</td>
+      <td valign="top">10-06-1993</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=92'">
+    </tr>
+    <tr>
+      <td valign="top">Mathijs Muller</td>
+      <td valign="top">Aristotelesstraat 283<br />7323 NG APELDOORN</td>
+      <td valign="top">3669193<br />&nbsp;</td>
+      <td valign="top">08-12-1993</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=93'">
+    </tr>
+    <tr>
+      <td valign="top">Nick Werkhoven</td>
+      <td valign="top">Heelmeestersdreef 314<br />7328 KC APELDOORN</td>
+      <td valign="top">5403731<br />&nbsp;</td>
+      <td valign="top">24-10-1992</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=94'">
+    </tr>
+    <tr>
+      <td valign="top">Jeroen Diks</td>
+      <td valign="top">Schermbloem 32<br />7322 IP APELDOORN</td>
+      <td valign="top">3668357<br />&nbsp;</td>
+      <td valign="top">16-03-1992</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=95'">
+    </tr>
+    <tr>
+      <td valign="top">Nienke Jansen</td>
+      <td valign="top">Venkelstraat 6<br />7322 XX APELDOORN</td>
+      <td valign="top">3669060<br />&nbsp;</td>
+      <td valign="top">03-06-1992</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=96'">
+    </tr>
+    <tr>
+      <td valign="top">Ilse Janssen</td>
+      <td valign="top">Kruizemuntstraat 729<br />7322 MD APELDOORN</td>
+      <td valign="top">3666093<br />&nbsp;</td>
+      <td valign="top">20-11-1991</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=97'">
+    </tr>
+    <tr>
+      <td valign="top">Rik Winters</td>
+      <td valign="top">Kruizemuntstraat 8<br />7322 LX APELDOORN</td>
+      <td valign="top">3669833<br />&nbsp;</td>
+      <td valign="top">18-07-1992</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=98'">
+    </tr>
+    <tr>
+      <td valign="top">Leon van den Berg</td>
+      <td valign="top">Westerlaan 17<br />7322 HA APELDOORN</td>
+      <td valign="top">3671023<br />&nbsp;</td>
+      <td valign="top">11-07-1993</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=99'">
+    </tr>
+    <tr>
+      <td valign="top">Dyon Bouhof</td>
+      <td valign="top">Linie 389<br />7325 DT APELDOORN</td>
+      <td valign="top">3780500<br />&nbsp;</td>
+      <td valign="top">15-03-1994</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=100'">
+    </tr>
+    <tr>
+      <td valign="top">Sebastiaan Kloppers</td>
+      <td valign="top">Houttuinen Noord 30<br />7325  RG APELDOORN</td>
+      <td valign="top">5763969<br />&nbsp;</td>
+      <td valign="top">10-06-1994</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=101'">
+    </tr>
+    <tr>
+      <td valign="top">Jerry van Voorthuizen</td>
+      <td valign="top">Vlierbessenlaan 14<br />7322 HZ APELDOORN</td>
+      <td valign="top">3663583<br />&nbsp;</td>
+      <td valign="top">17-07-1993</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=102'">
+    </tr>
+    <tr>
+      <td valign="top">Nick Vellinga</td>
+      <td valign="top">Becking 10<br />7161 KA Neede</td>
+      <td valign="top">0545-296212/3<br />nick@vellinga.ws</td>
+      <td valign="top">&nbsp;</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=103'">
+    </tr>
+    <tr>
+      <td valign="top">Nathan Holtman</td>
+      <td valign="top">Zilverschoon 35<br /> APELDOORN</td>
+      <td valign="top">3603901<br />&nbsp;</td>
+      <td valign="top">&nbsp;</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=104'">
+    </tr>
+    <tr>
+      <td valign="top">Michael Sevkin </td>
+      <td valign="top">kruizemuntstraat 9<br />7321 RK APELDOORN</td>
+      <td valign="top">0645588413<br />michaelsevkin@hotmail.com</td>
+      <td valign="top">03-13-1993</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=105'">
+    </tr>
+    <tr>
+      <td valign="top">Michael Sevkin </td>
+      <td valign="top">Kruizemuntstraat 9<br /> APELDOORN</td>
+      <td valign="top">0645588413<br />michaelsevkin@hotmail.com</td>
+      <td valign="top">&nbsp;</td>
+      <td valign="top"><input type="button" value="Wijzigen" onclick="javascript:document.location='http://adr.pythoneer.nl/cgi-bin/adres_select.py?edit=106'">
+    </tr>
+  </table>
+</body>
+</html>
