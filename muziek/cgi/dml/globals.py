@@ -1,0 +1,5 @@
+httppad = "http://muziek.pythoneer.nl/"
+cgipad = httppad + "cgi-bin/"
+xmlpad = "F:/pythoneer/muziek/data/"
+cssfile = "http://adr.pythoneer.nl/adressen.css"
+htmlpad ="F:/www/pythoneer/muziek/"

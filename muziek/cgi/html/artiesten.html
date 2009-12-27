@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="%s" type="text/css" />
+  <title>Adressen selectie</title>
+  <script type="text/javascript">
+  // controle dat tnaam en tsort allebei ingevuld zijn
+  function check()
+  {
+  }
+  </script>
+</head>
+<body>
+  <table width="100%" border="1">
+    <tr><th width="40%">Naam</th><th width="20%">Sorteerkey</th><th width="40%">
+    <input type="button" value="Nieuw" onclick="javascript:document.location='%smuziek_artiesten.py?hNieuw=nieuw'"/></th></tr>
+    <tr>
+    <form action="%smuziek_artiesten2.py" method="post">
+      <td valign="top">$s<input type="text" name="tnaam" id="tnaam%s" %s size="60" />$s</td>
+      <td valign="top">$s<input type="text" name="tsort" id="tsort%s" value="%s" />$s</td>
+      <td valign="top">
+        <input type="hidden" name="hId" id="hId" value="%s" />
+        <input type="button" value="Wijzigen" onclick="javascript:document.location='%smuziek_artiesten.py?edit=%s'">
+        <input type="submit" value="Aanpassen" onclick="check()"/>
+        <input type="button" value="Terugzetten" onclick="javascript:history.go(-1)" />
+        <input type="button" value="Nieuw achtervoegen" onclick="javascript:document.location='%smuziek_artiesten.py?after=%s&sort=%s'">
+      </td>
+    </form>
+    </tr>
+  </table>
+</body>
+</html>
