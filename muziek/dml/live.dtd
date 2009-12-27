@@ -1,7 +1,0 @@
-<!ELEMENT live (concert+)>
-<!ELEMENT concert (locatie, datum, bezetting)
-<!ATTLIST concert  id CDATA #REQUIRED
-            artiest CDATA #REQUIRED>
-<!ELEMENT locatie (PCDATA)>
-<!ELEMENT datum (PCDATA)>
-<!ELEMENT bezetting (PCDATA)>
