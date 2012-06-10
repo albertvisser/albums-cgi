@@ -2,22 +2,20 @@
 import cgi
 import cgitb
 cgitb.enable()
-import films_padspecs
-from detail_main import Detail
+import muziek_ini
+from start_main import start
 
 def main():
+
     form = cgi.FieldStorage()
-    form_ok = 0
+    meld = form.getfirst("fout", "&nbsp;")
+
     print "Content-Type: text/html"     # HTML is following
     print                               # blank line, end of headers
-
-    film_id = form.getfirst("selFilms", -1)
-    wijzig = form.getfirst("hWijzig", 0)
-
-    l = Detail(film_id, wijzig)
-    for x in l.regels:
+    regels = start(meld)
+    for x in regels:
         print x
 
 if __name__ == '__main__':
-   main()
+    main()
 

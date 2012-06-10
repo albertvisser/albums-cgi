@@ -9,16 +9,16 @@
 <body>
   <h1><a name="begin">Magiokis Films!</a></h1>
   <hr />
-  <form action="http://films.pythoneer.nl/cgi-bin/Films_Select.py" method="post">
+  <form action="http://films.pythoneer.nl/cgi-bin/films_select.py" method="post">
       <div>
         <span class="left">Selecteer op:</span>
         <span class="right">
               <select name="selZoek">
-                <option value = "None">Niet zoeken, alles tonen</option>
-                <option value = "titel">Titel</option>
-                <option value = "van">Maker</option>
-                <option value = "met">Medespelenden</option>
-                <option value = "trefw">Trefwoord</option>
+                <option value="alles">Niet zoeken, alles tonen</option>
+                <option value="titel">Titel</option>
+                <option value="van">Maker</option>
+                <option value="met">Medespelenden</option>
+                <option value="trefw">Trefwoord</option>
               </select>
              <input type="text" name="txtZoek" size="60" maxlength="60" />
         </span>
@@ -30,9 +30,9 @@
         </span>
         <span class="right">
           <select name="selSort">
-              <option value = "titel">Titel</option>
-              <option value = "loc">Locatie</option>
-              <option value = "geen">Niets</option>
+              <option value="titel">Titel</option>
+              <option value="loc">Locatie</option>
+              <option value="geen">Niets</option>
            </select>
         </span>
       </div>

@@ -54,7 +54,7 @@ display: block;
 }
 div.box {
 height: 160px;
-overflow: scroll;
+overflow: auto;
 padding-bottom:18px;
 }
 .cntr {

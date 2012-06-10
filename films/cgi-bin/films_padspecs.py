@@ -1,6 +1,6 @@
-htmlpad = "f:/www/pythoneer/films/"
+import sys
+htmlpad = "/home/albert/www/pythoneer/films"
 httppad = "http://films.pythoneer.nl/"
 cgipad = httppad + "cgi-bin/"
-progpad = "f:/pythoneer/films/"
-import sys
-sys.path.append(progpad[:-1])
+progpad = "/home/albert/pythoneer/films"
+sys.path.append(progpad)

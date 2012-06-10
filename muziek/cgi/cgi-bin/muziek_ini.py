@@ -1,2 +1,2 @@
 import sys
-sys.path.append("F:/pythoneer/muziek") # waar de eigenlijke programmatuur staat
+sys.path.append("/home/albert/pythoneer/muziek") # waar de eigenlijke programmatuur staat

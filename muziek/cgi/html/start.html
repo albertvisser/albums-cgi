@@ -7,9 +7,9 @@
 </head>
 <body>
 <!-- kop -->
-<!-- fout -->
+<!-- fout  <span class="mess">%s</span><br /> -->
 <!-- form t.b.v. opgeven selectie van studio albums -->
-  <form action="http://muziek.pythoneer.nl/cgi-bin/Muziek_Select.py" method="post">
+  <form action="http://muziek.pythoneer.nl/cgi-bin/muziek_select.py" method="post">
       <div>
 		<span class="left3">Selecteer studio-albums op:</span>
         <span class="right3">
@@ -48,7 +48,7 @@
         <span class="right">
           <input type="hidden" name="hStudio" id="hStudio" value="studio" />
           <input type="submit" value="Selectie uitvoeren" />
-          <input type="submit" value="Nieuw album opvoeren" onclick="'document.location='http://muziek.pythoneer.nl/cgi-bin/Muziek_Detail.py?hNieuw=Nieuw&amp;hStudioN=studio'"/>
+          <input type="submit" value="Nieuw album opvoeren" onclick="'document.location='http://muziek.pythoneer.nl/cgi-bin/muziek_detail.py?hNieuw=Nieuw&amp;hStudioN=studio'"/>
         </span>
       </div>
   </form>
@@ -57,7 +57,7 @@
   <br />
   <hr />
 <!-- form t.b.v. opgeven selectie van live opnames -->
-  <form action="http://muziek.pythoneer.nl/cgi-bin/Muziek_Select.py" method="post">
+  <form action="http://muziek.pythoneer.nl/cgi-bin/muziek_select.py" method="post">
       <div>
 		<span class="left3">Selecteer concert-opnames op:</span>
         <span class="right3">
@@ -94,7 +94,7 @@
         <span class="right">
           <input type="hidden" name="hLive" id="hLive" value="live" />
           <input type="submit" value="Selectie uitvoeren" />
-          <input type="button" value="Nieuwe opname opvoeren" onclick="document.location='http://muziek.pythoneer.nl/cgi-bin/Muziek_Detail.py?hNieuw=Nieuw&amp;hLiveN=studio'"/>
+          <input type="button" value="Nieuwe opname opvoeren" onclick="document.location='http://muziek.pythoneer.nl/cgi-bin/muziek_detail.py?hNieuw=Nieuw&amp;hLiveN=studio'"/>
         </span>
       </div>
   </form>
@@ -106,8 +106,8 @@
       <div>
         <span class="left"> </span>
         <span class="right">
-          <input type="button" value="Nieuwe artiest opvoeren" onclick="document.location='http://muziek.pythoneer.nl/cgi-bin/Muziek_Artiesten.py?hNieuw=Nieuw'"/>
-          <input type="button" value="Lijst artiesten / artiest wijzigen" onclick="document.location='http://muziek.pythoneer.nl/cgi-bin/Muziek_Artiesten.py'"/>
+          <input type="button" value="Nieuwe artiest opvoeren" onclick="document.location='http://muziek.pythoneer.nl/cgi-bin/muziek_artiesten.py?hNieuw=Nieuw'"/>
+          <input type="button" value="Lijst artiesten / artiest wijzigen" onclick="document.location='http://muziek.pythoneer.nl/cgi-bin/muziek_artiesten.py'"/>
         </span>
       </div>
   <br />
