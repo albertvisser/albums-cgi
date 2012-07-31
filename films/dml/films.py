@@ -186,51 +186,38 @@ class SearchFilm(ContentHandler):
             self.select_this = False
             item = attrs.get('id', None)
             self.listitem = [item]
-            for z in self.itemlist:
-                for zoek in ('soort', 'taal', 'genre', 'loc'):
-                    v = attrs.get(zoek, None)
-                    if z == zoek:
-                        self.listitem.append(v)
-                    if not self.searchdict:
-                        self.select_this = True
+            for zoek in ('soort', 'taal', 'genre', 'loc'):
+                v = attrs.get(zoek, None)
+                if z == zoek:
+                    self.listitem.append(v)
+                if not self.searchdict:
+                    self.select_this = True
+                else:
+                    try:
+                        h = self.searchdict[zoek]
+                    except KeyError:
+                        pass
                     else:
-                        try:
-                            h = self.searchdict[zoek]
-                        except KeyError:
-                            pass
-                        else:
-                            if h in v:
-                                self.select_this = True
+                        if h in v:
+                            self.select_this = True
         elif name == 'titel':
-            for z in self.itemlist:
-                if z == name:
-                    self.in_titel = True
-                    self.titel = ""
+            self.in_titel = True
+            self.titel = ""
         elif name == 'van':
-            for z in self.itemlist:
-                if z == name:
-                    self.in_van = True
-                    self.van = ""
+            self.in_van = True
+            self.van = ""
         elif name == 'jaar':
-            for z in self.itemlist:
-                if z == name:
-                    self.in_jaar = True
-                    self.jaar = ""
+            self.in_jaar = True
+            self.jaar = ""
         elif name == 'met':
-            for z in self.itemlist:
-                if z == name:
-                    self.in_met = True
-                    self.met = ""
+            self.in_met = True
+            self.met = ""
         elif name == 'over':
-            for z in self.itemlist:
-                if z == name:
-                    self.in_over = True
-                    self.over = ""
+            self.in_over = True
+            self.over = ""
         elif name == 'duur':
-            for z in self.itemlist:
-                if z == name:
-                    self.in_duur = True
-                    self.duur = ""
+            self.in_duur = True
+            self.duur = ""
 
     def characters(self, ch):
         if self.in_titel:
@@ -253,7 +240,8 @@ class SearchFilm(ContentHandler):
         elif name == 'titel':
             if self.in_titel:
                 self.in_titel = False
-                self.listitem.append(self.titel)
+                if name in self.itemlist:
+                    self.listitem.append(self.titel)
                 if not self.searchdict:
                     self.select_this = True
                 else:
@@ -266,7 +254,8 @@ class SearchFilm(ContentHandler):
         elif name == 'van':
             if self.in_van:
                 self.in_van = False
-                self.listitem.append(self.van)
+                if name in self.itemlist:
+                    self.listitem.append(self.van)
                 if not self.searchdict:
                     self.select_this = True
                 elif 'van' in self.searchdict:
@@ -275,7 +264,8 @@ class SearchFilm(ContentHandler):
         elif name == 'jaar':
             if self.in_jaar:
                 self.in_jaar = False
-                self.listitem.append(self.jaar)
+                if name in self.itemlist:
+                    self.listitem.append(self.jaar)
                 if not self.searchdict:
                     self.select_this = True
                 else:
@@ -288,39 +278,42 @@ class SearchFilm(ContentHandler):
         elif name == 'met':
             if self.in_met:
                 self.in_met = False
-                self.listitem.append(self.met)
+                if name in self.itemlist:
+                    self.listitem.append(self.met)
                 if not self.searchdict:
                     self.select_this = True
                 else:
                     try:
                         h = self.searchdict['met'].upper()
-                    except ValueError:
+                    except KeyError:
                         h = ''
                     if h and h in self.met.upper():
                         self.select_this = True
         elif name == 'over':
             if self.in_over:
                 self.in_over = False
-                self.listitem.append(self.over)
+                if name in self.itemlist:
+                    self.listitem.append(self.over)
                 if not self.searchdict:
                     self.select_this = True
                 else:
                     try:
                         h = self.searchdict['over'].upper()
-                    except ValueError:
+                    except KeyError:
                         h = ''
                     if h and h in self.over.upper():
                         self.select_this = True
         elif name == 'duur':
             if self.in_duur:
                 self.in_duur = False
-                self.listitem.append(self.duur)
+                if name in self.itemlist:
+                    self.listitem.append(self.duur)
                 if not self.searchdict:
                     self.select_this = True
                 else:
                     try:
                         h = self.searchdict['duur']
-                    except ValueError:
+                    except KeyError:
                         h = ''
                     if h and h in self.duur:
                         self.select_this = True
