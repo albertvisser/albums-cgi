@@ -56,5 +56,11 @@ class Select:
                 #        fl.Items bestaat uit id en titel
                         for y in sl:
                             self.regels.append('  <option value="%s">%s</option>' % (y[1],y[0]))
+                elif 'selZoek' in x:
+                    self.regels.append(x.format(self.sel_zoek))
+                elif 'txtZoek' in x:
+                    self.regels.append(x.format(self.txt_zoek))
+                elif 'selSort' in x:
+                    self.regels.append(x.format(self.sorteren))
                 else:
                     self.regels.append(x)

@@ -187,9 +187,6 @@ class SearchFilm(ContentHandler):
             item = attrs.get('id', None)
             self.listitem = [item]
             for zoek in ('soort', 'taal', 'genre', 'loc'):
-                v = attrs.get(zoek, None)
-                if z == zoek:
-                    self.listitem.append(v)
                 if not self.searchdict:
                     self.select_this = True
                 else:

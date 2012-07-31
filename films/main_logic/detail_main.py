@@ -2,9 +2,12 @@ import common
 from films import Film
 
 class Detail:
-    def __init__(self, film_id=-1, wijzig=0):
+    def __init__(self, film_id=-1, wijzig=0, sel_zoek='', txt_zoek='', sorteren=''):
         self.film_id = film_id
         self.wijzig = wijzig
+        self.sel_zoek = sel_zoek
+        self.txt_zoek = txt_zoek
+        self.sorteren = sorteren
         self.regels = []
         mt = "Magiokis Films!"
         ms = ("%sfilms.css" % common.httppad)
@@ -49,5 +52,10 @@ class Detail:
                             self.sh.taal in x):
                         hlp = 'checked="checked"'
                     self.regels.append(x.format(hlp))
+                elif 'selFilms' in x:
+                    self.regels.append(x.format(self.film_id))
+                elif 'selZoek' in x:
+                    self.regels.append(x.format(self.sel_zoek, self.txt_zoek,
+                        self.sorteren))
                 else:
                     self.regels.append(x)
