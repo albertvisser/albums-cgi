@@ -1,7 +1,12 @@
-#! /usr/bin/env python
+#! /usr/bin/env python3
+# -*- coding: utf-8 -*-
+
 import cgi
 import cgitb
 cgitb.enable()
+import sys
+from codecs import getwriter
+sys.stdout = getwriter("utf-8")(sys.stdout.buffer)
 import muziek_ini
 from select_main import Select
 
@@ -48,9 +53,12 @@ def main():
         h.set_arg('tZoek', form.getfirst("hTZoek", None))
         h.set_arg('sorteren', form.getfirst("hSort", None))
     h.go()
-    print "Content-Type: text/html"     # HTML is following
+    print("Content-Type: text/html\n")     # HTML is following
     for x in h.regels:
-        print x
+        try:
+            print(x)
+        except UnicodeEncodeError:
+            print(x.encode("utf-8"))
 
 if __name__ == '__main__':
 	main()

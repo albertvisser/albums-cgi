@@ -1,18 +1,13 @@
+# -*- coding: utf-8 -*-
+
 def meldfout(melding,header="",css=""):
     # fout melden
-    print "Content-Type: text/html"     # HTML is following
-    print                               # blank line, end of headers
-    print "<html>"
-    print "<head>"
+    template = "<html><head>{}</head><body>{}{}</body></html>"
     if css != "":
-        print ('<link rel="stylesheet" href="%s" type="text/css">' % css)
-    print "</head>"
+        css = '<link rel="stylesheet" href="%s" type="text/css">' % css
     if header != "":
-        print ('<h1><a>%s</a></h1>' % header)
-        print '<hr />'
-    print ("<body>%s</body>" % melding)
-    print "</html>"
-    return
+        header = '<h1><a>%s</a></h1><hr />' % header
+    return template.format(css, header, melding)
 
 def main():
     m = "Dit is een foutmelding"
@@ -20,7 +15,7 @@ def main():
     h =  "Header Tekst"
 ##    meldfout(m,h)
     s = "http://films.pythoneer.nl/films.css"
-    meldfout(m,h,s)
+    print(meldfout(m,h,s))
     return
 
 if __name__ == '__main__':

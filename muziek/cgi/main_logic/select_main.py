@@ -27,6 +27,7 @@ class Select(object):
         self.selection = {}
         self.fieldslist = ''
         self.itemlist = []
+        self.selecteren = self.zoektekst = self.albumtype = self.sorteren = None
         self.fout = ''
 
     def set_arg(self, name, value):

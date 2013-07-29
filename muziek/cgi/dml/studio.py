@@ -223,25 +223,25 @@ class SearchAlbum(ContentHandler):
         if searchlist == None:
             self.sel_alles = True
         else:
-            if searchlist.has_key('artiest'):
+            if 'artiest' in searchlist:
                 self.sel_artiest = True
                 self.zoek_artiest = searchlist['artiest'].upper()
-            if searchlist.has_key('titel'):
+            if 'titel' in searchlist:
                 self.sel_titel = True
                 self.zoek_titel = searchlist['titel'].upper()
-            if searchlist.has_key('label'):
+            if 'label' in searchlist:
                 self.sel_label = True
                 self.zoek_label = searchlist['label'].upper()
-            if searchlist.has_key('jaar'):
+            if 'jaar' in searchlist:
                 self.sel_jaar = True
                 self.zoek_jaar = searchlist['jaar'].upper()
-            if searchlist.has_key('producer'):
+            if 'producer' in searchlist:
                 self.sel_producer = True
                 self.zoek_producer = searchlist['producer'].upper()
-            if searchlist.has_key('credits'):
+            if 'credits' in searchlist:
                 self.sel_credits = True
                 self.zoek_credits = searchlist['credits'].upper()
-            if searchlist.has_key('bezetting'):
+            if 'bezetting' in searchlist:
                 self.sel_bezetting = True
                 self.zoek_bezetting = searchlist['bezetting'].upper()
         self.items = []
@@ -375,7 +375,7 @@ def albumlist(element_list, selection_criteria=None):
         items = []
         for y in x:
             try:
-                items.append(y.encode('ISO-8859-1'))
+                items.append(y)
             except:
                 items.append(y)
         itemlist.append(items)
@@ -409,23 +409,23 @@ class Album:
         self.found = dh.itemfound
         if self.found:
             if dh.artiest is not None:
-#                self.artiest = dh.artiest.encode('ISO-8859-1')
+#                self.artiest = dh.artiest
                 ah = Artiest(dh.artiest, '1')
                 self.artiest = ah.naam
             if dh.titel is not None:
-                self.titel = dh.titel.encode('ISO-8859-1')
+                self.titel = dh.titel
             if dh.label is not None:
-                self.label = dh.label.encode('ISO-8859-1')
+                self.label = dh.label
             if dh.jaar is not None:
-                self.jaar = dh.jaar.encode('ISO-8859-1')
+                self.jaar = dh.jaar
             if dh.volgnr is not None:
-                self.volgnr = dh.volgnr.encode('ISO-8859-1')
+                self.volgnr = dh.volgnr
             if dh.producer is not None:
-                self.producer = dh.producer.encode('ISO-8859-1')
+                self.producer = dh.producer
             if dh.credits is not None:
-                self.credits = dh.credits.encode('ISO-8859-1')
+                self.credits = dh.credits
             if dh.bezetting is not None:
-                self.bezetting = dh.bezetting.encode('ISO-8859-1')
+                self.bezetting = dh.bezetting
             if len(dh.tracks) > 0:
                 # tracks op volgorde zetten
                 l = len(dh.tracks)
@@ -435,12 +435,12 @@ class Album:
                     y = x + 1
                     for z in dh.tracks:
                         if int(z[0]) == y:
-                            self.tracks[x] = z[1].encode('ISO-8859-1')
+                            self.tracks[x] = z[1]
             if len(dh.opnames) > 0:
                 for x in dh.opnames:
-                    y = x[0].encode('ISO-8859-1')
+                    y = x[0]
                     if x[1] != "":
-                        y = y + " " + x[1].encode('ISO-8859-1')
+                        y = y + " " + x[1]
                     self.opnames.append(y)
 
     def write(self):

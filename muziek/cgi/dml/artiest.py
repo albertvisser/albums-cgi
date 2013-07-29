@@ -45,7 +45,7 @@ class ZoekNamen(ContentHandler):
             id = attrs.get('id', None)
             naam = attrs.get('naam', None)
             sort = attrs.get('sort', None)
-            self.namenlijst.append([sort,id,naam])
+            self.namenlijst.append((sort, id, naam))
 
 class UpdateArtiest(XMLGenerator):
     "schrijf nieuwe songgegevens weg in XML-document"
@@ -115,20 +115,16 @@ def artiestenlijst():
     parser.setContentHandler(dh)
     parser.parse(artiestenfile)
     if len(dh.namenlijst) > 0:
-        s = []
-        for x in dh.namenlijst:
-            ## h = x[0] + ";#;" + x[1] +  ";#;" + x[2]
-            h = ("%s;#;%s;#;%s" % (x[0], x[1], x[2]))
-            s.append(h)
+        ## s = []
+        ## for x in dh.namenlijst:
+            ## h = ("%s;#;%s;#;%s" % (x[0], x[1], x[2]))
+            ## s.append(h)
+        ## s.sort()
         ## for x in s:
-            ## print x
-        s.sort()
-        ## for x in s:
-            ## print x
-        for x in s:
-            y = x.split(";#;")
-            namen.append([y[1].encode('iso-8859-1'), y[2].encode('iso-8859-1'),
-                y[0].encode('iso-8859-1')])
+            ## y = x.split(";#;")
+            ## namen.append([y[1], y[2], y[0]])
+        for x, y, z in sorted(dh.namenlijst):
+            namen.append((y, z, x))
         return namen
 
 class Artiest(object):
@@ -184,7 +180,7 @@ class Artiest(object):
                     self.id = dh.id
                 if zoek_naam:
                     self.naam = dh.naam
-                self.sort = dh.sort.encode('iso-8859-1')
+                self.sort = dh.sort
 
     def write(self):
         shutil.copyfile(self.fn,self.fno)

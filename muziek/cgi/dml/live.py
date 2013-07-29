@@ -50,7 +50,7 @@ class FindConcert(ContentHandler):
             if self.founditem:
                 h1 = attrs.get('type', None)
                 h2 = attrs.get('desc', "")
-                self.Opnames.append([h1, h2])
+                self.opnames.append([h1, h2])
 
     def characters(self, ch):
         if self.in_locatie:
@@ -157,7 +157,7 @@ class SearchConcert(ContentHandler):
         self.list_bezetting = False
         for z in itemlist:
             if z == "artiest":
-                self.list_artiest =  True
+                self.list_artiest = True
             if z == "locatie":
                 self.list_locatie = True
             if z == "datum":
@@ -171,17 +171,17 @@ class SearchConcert(ContentHandler):
         if searchlist == None:
             self.selAlles = True
         else:
-            if searchlist.has_key('artiest'):
-                self.sel_artiest = 1
+            if 'artiest' in searchlist:
+                self.sel_artiest = True
                 self.zoek_artiest = searchlist['artiest'].upper()
-            if searchlist.has_key('locatie'):
-                self.sel_locatie = 1
+            if 'locatie' in searchlist:
+                self.sel_locatie = True
                 self.zoek_locatie = searchlist['locatie'].upper()
-            if searchlist.has_key('datum'):
-                self.sel_datum = 1
+            if 'datum' in searchlist:
+                self.sel_datum = True
                 self.zoek_datum = searchlist['datum'].upper()
-            if searchlist.has_key('bezetting'):
-                self.sel_bezetting = 1
+            if 'bezetting' in searchlist:
+                self.sel_bezetting = True
                 self.zoek_bezetting = searchlist['bezetting'].upper()
         self.items = []
         self.in_locatie = self.in_datum = self.in_bezetting = False
@@ -203,15 +203,15 @@ class SearchConcert(ContentHandler):
                     self.select_this = True
         elif name == 'locatie':
 ##            if self.list_locatie:
-                self.in_locatie = 1
+                self.in_locatie = True
                 self.locatie = ""
         elif name == 'datum':
 ##            if self.list_datum:
-                self.in_datum = 1
+                self.in_datum = True
                 self.datum = ""
         elif name == 'bezetting':
 ##            if self.list_bezetting:
-                self.in_bezetting = 1
+                self.in_bezetting = True
                 self.bezetting = ""
 
     def characters(self, ch):
@@ -260,7 +260,7 @@ def concertlist(element_list, selection_criteria=None):
         items = []
         for y in x:
             try:
-                items.append(y.encode('ISO-8859-1'))
+                items.append(y)
             except:
                 items.append(y)
         itemlist.append(items)
@@ -293,15 +293,15 @@ class Concert:
         self.found = dh.itemfound
         if self.found:
             if dh.artiest is not None:
-                #  self.Artiest = dh.artiest.encode('ISO-8859-1')
-                ah = artiest(str(dh.artiest), '1')
+                #  self.Artiest = dh.artiest
+                ah = Artiest(str(dh.artiest), '1')
                 self.artiest = ah.naam
             if dh.locatie is not None:
-                self.locatie = dh.locatie.encode('ISO-8859-1')
+                self.locatie = dh.locatie
             if dh.datum is not None:
-                self.datum = dh.datum.encode('ISO-8859-1')
+                self.datum = dh.datum
             if dh.bezetting is not None:
-                self.bezetting = dh.bezetting.encode('ISO-8859-1')
+                self.bezetting = dh.bezetting
             if len(dh.tracks) > 0:
                 # tracks op volgorde zetten
                 l = len(dh.tracks)
@@ -311,12 +311,12 @@ class Concert:
                     y = x + 1
                     for z in dh.tracks:
                         if int(z[0]) == y:
-                            self.tracks[x] = z[1].encode('ISO-8859-1')
+                            self.tracks[x] = z[1]
             if len(dh.opnames) > 0:
                 for x in dh.opnames:
-                    y = x[0].encode('ISO-8859-1')
+                    y = x[0]
                     if x[1] != "":
-                        y += " " + x[1].encode('ISO-8859-1')
+                        y += " " + x[1]
                     self.opnames.append(y)
 
     def write(self):

@@ -2,7 +2,7 @@
 <html>
 <head>
   <title>Muziek Detail</title>
-  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <link rel="stylesheet" href="http://muziek.pythoneer.nl/muziek.css" type="text/css" />
 </head>
 <body>
@@ -70,7 +70,7 @@
      <input type="button" value="Waarden terugzetten" onclick="history.go(-1)"/></span><br/><br/>
     </div>
     <div class="wide box">
-       <form class="regel" action="%smuziek_wijzigTrack.py" method="post">
+       <form class="regel" action="%smuziek_wijzigtrack.py" method="post">
       <span class="l12 cntr">&nbsp;&nbsp;&nbsp;&nbsp;%s.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
       <span>
         <input type="hidden" name="hAlbumId" value="%s" />
@@ -97,7 +97,7 @@
      <input type="button" value="Waarden terugzetten" onclick="history.go(-1)"/></span></div>
     <div class="wide"><span class="left cntr">%s.</span>
      <span class="right">
-      <form action="http://muziek.pythoneer.nl/cgi-bin/muziek_wijzigOpname.py" method="post">
+      <form action="http://muziek.pythoneer.nl/cgi-bin/muziek_wijzigopname.py" method="post">
       <input type="hidden" name="hAlbumId" value="%s" />
       <input type="hidden" name="hAlbumType" value="%s" />
       <input type="hidden" name="hOpnId" value="%s" />

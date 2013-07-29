@@ -1,12 +1,15 @@
-#! /usr/bin/env python
+#! /usr/bin/env python3
+# -*- coding: utf-8 -*-
 
 import cgi
 import cgitb
 cgitb.enable()
+import sys
+from codecs import getwriter
+sys.stdout = getwriter("utf-8")(sys.stdout.buffer)
 import muziek_ini
 from meldfout import meldfout
 from detail_main import Detail
-from muziek_wijzig import Wijzig
 
 def main():
     form = cgi.FieldStorage()
@@ -63,14 +66,13 @@ def main():
     if albumid is None:
         foutregel = 'Geen albumid opgegeven'
 
-    print "Content-Type: text/html"     # HTML is following
-    print                               # blank line, end of headers
+    print("Content-Type: text/html\n")     # HTML is following
     if foutregel != '':
-        meldfout(foutregel, "Magiokis Muziek!")
+        print(meldfout(foutregel, "Magiokis Muziek!"))
     else:
         dm.toon()
         for x in dm.regels:
-            print x
+            print(x)
 
 if __name__ == '__main__':
 	main()

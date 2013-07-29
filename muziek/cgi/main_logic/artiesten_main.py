@@ -1,4 +1,3 @@
-#! C:/python23 python
 # -*- coding: UTF-8 -*-
 import os
 import globals

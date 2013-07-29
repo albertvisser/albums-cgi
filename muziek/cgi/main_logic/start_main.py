@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import globals
 from artiest import artiestenlijst
 

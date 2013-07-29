@@ -1,8 +1,12 @@
-#! /usr/bin/env python
+#! /usr/bin/env python3
+# -*- coding: utf-8 -*-
 
 import cgi
 import cgitb
 cgitb.enable()
+import sys
+from codecs import getwriter
+sys.stdout = getwriter("utf-8")(sys.stdout.buffer)
 import muziek_ini
 from meldfout import meldfout
 from detail_main import Detail
@@ -53,14 +57,16 @@ def main():
         dm.zoeksoort = form.getfirst("hSZoek", None)
         dm.zoektekst = form.getfirst("hTZoek", None)
         dm.sortering = form.getfirst("hSort", None)
-    print "Content-Type: text/html"     # HTML is following
-    print                               # blank line, end of headers
+    print("Content-Type: text/html\n")     # HTML is following
     if foutregel != '':
-        meldfout(foutregel, "Magiokis Muziek!")
+        print(meldfout(foutregel, "Magiokis Muziek!"))
     else:
         dm.toon()
         for x in dm.regels:
-            print x
+            try:
+                print(x)
+            except UnicodeEncodeError:
+                print(x.encode("utf-8"))
 
 if __name__ == '__main__':
 	main()

@@ -188,8 +188,7 @@ class Detail(object):
                         # <!-- artiest   <input type="text" name="txtArtiest" id="txtArtiest" size="20" maxlength="60" value="%s"/><br /> -->
                         self.regels.append(artiest_selector[0])
                         for y in namen:
-                            hlp = 'selected="selected"' if y[1] == artiest.encode(
-                                "ISO-8859-1") else ''
+                            hlp = 'selected="selected"' if y[1] == artiest else ''
                             self.regels.append(artiest_selector[1] % (hlp, y[0],
                                 y[1]))
                         self.regels.append(artiest_selector[2])
