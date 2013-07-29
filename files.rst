@@ -1,6 +1,14 @@
 Files in this directory
 =======================
 
+main site
+---------
+
+    favicon.ico
+        site icon
+    index.html
+        startpagina
+
 adressen app
 ------------
 
@@ -292,6 +300,24 @@ muziek\django\
 
     __init__.py
         (lege) package indicator
+    manage.py
+        standaard maintenance utility
+    settings.py
+        site instellingen
+    models.py
+        data mapping
+    urls.py
+        url dispatcher
+    views.py
+        opbouwen van de pagina's
+    wsgi_handler.py
+        starter om server via wsgi te gebruiken
+
+muziek\django\muziek\
+.....................
+
+    __init__.py
+        (lege) package indicator
     admin.py
         aanmelden models op admin site
     models.py
@@ -303,6 +329,16 @@ muziek\django\
 
 muziek\django\templates\
 ........................
+
+    base.html
+        algemene basis layout
+    base_site.html
+        site specifieke aanvullingen
+    index.html
+        startpagina (nog met doctool)
+
+muziek\django\templates\muziek\
+...............................
 
     artiest.html
         invulsource opvoeren artiest
@@ -336,42 +372,3 @@ muziek\gui\
         importeert AlbumList, Album uit muziek_studio_met
             ConcertList, Concert uit muziek_live_met
             Artiest, ArtiestenLijst uit muziek_artiest
-
-main site
----------
-
-site\cgi\
-.........
-
-    favicon.ici
-        site icon
-    index.html
-        startpagina
-
-site\django\
-............
-
-    __init__.py
-        (lege) package indicator
-    manage.py
-        standaard maintenance utility
-    settings.py
-        site instellingen
-    models.py
-        data mapping
-    urls.py
-        url dispatcher
-    views.py
-        opbouwen van de pagina's
-    wsgi_handler.py
-        starter om server via wsgi te gebruiken
-
-site\django\templates\
-......................
-
-    base.html
-        algemene basis layout
-    base_site.html
-        site specifieke aanvullingen
-    index.html
-        startpagina (nog met doctool)
