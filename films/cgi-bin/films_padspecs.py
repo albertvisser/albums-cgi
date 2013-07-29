@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import sys
 htmlpad = "/home/albert/www/pythoneer/films"
 httppad = "http://films.pythoneer.nl/"
