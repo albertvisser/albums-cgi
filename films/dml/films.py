@@ -326,14 +326,12 @@ class FilmList:
         dh = SearchFilm(element_list, selection_criteria)
         parser.setContentHandler(dh)
         parser.parse(self.fn)
-        for x in dh.items:
-            items = []
-            for y in x:
-                try:
-                    items.append(y.encode('ISO-8859-1'))
-                except:
-                    items.append(y)
-            self.items.append(items)
+        ## for x in dh.items:
+            ## items = []
+            ## for y in x:
+                ## items.append(y)
+            ## self.items.append(items)
+        self.items = [x for x in dh.items]
 
 class Film:
     "lijst alle gegevens van een bepaald item"
@@ -353,16 +351,16 @@ class Film:
         parser.parse(self.fn)
         self.found = dh.itemfound
         if self.found:
-            self.soort = dh.soort.encode('ISO-8859-1')
-            self.taal = dh.taal.encode('ISO-8859-1')
-            self.genre = dh.genre.encode('ISO-8859-1')
-            self.loc = dh.loc.encode('ISO-8859-1')
-            self.titel = dh.titel.encode('ISO-8859-1')
-            self.van = dh.van.encode('ISO-8859-1')
-            self.jaar = dh.jaar.encode('ISO-8859-1')
-            self.met = dh.met.encode('ISO-8859-1')
-            self.over = dh.over.encode('ISO-8859-1')
-            self.duur = dh.duur.encode('ISO-8859-1')
+            self.soort = dh.soort
+            self.taal = dh.taal
+            self.genre = dh.genre
+            self.loc = dh.loc
+            self.titel = dh.titel
+            self.van = dh.van
+            self.jaar = dh.jaar
+            self.met = dh.met
+            self.over = dh.over
+            self.duur = dh.duur
 
     def write(self):
         shutil.copyfile(self.fn, self.fno)
