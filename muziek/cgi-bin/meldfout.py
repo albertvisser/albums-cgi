@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-def meldfout(melding,header="",css=""):
+def meldfout(melding, header="", css=""):
     # fout melden
     template = "<html><head>{}</head><body>{}{}</body></html>"
     if css != "":

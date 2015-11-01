@@ -28,7 +28,8 @@ def main():
     try:
         m = Artiesten(args)
     except Fout as meld:
-        print(meld)
+        print(meldfout(foutregel, "Magiokis Muziek!"))
+        cgi.print_form(form)
     else:
         for x in m.regels:
             try:

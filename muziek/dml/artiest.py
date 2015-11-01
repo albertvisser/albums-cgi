@@ -52,10 +52,10 @@ class UpdateArtiest(XMLGenerator):
     def __init__(self, item):
         self.ah = item
         self.search_item = self.ah.Id
-        self.fh = open(self.ah.fn,'w')
+        self._out = open(self.ah.fn,'w')
         self.founditem = 0
         self.itemfound = 0
-        XMLGenerator.__init__(self,self.fh)
+        XMLGenerator.__init__(self,self._out)
 
     def startElement(self, name, attrs):
     #-- kijk of we met de te wijzigen song bezig zijn

@@ -1,9 +1,9 @@
-docroot= "/home/albert/pythoneer/muziek/data"
-httppad = "http://muziek.pythoneer.nl/"
+httppad = "http://muziek.lemoncurry.nl/"
 cgipad = httppad + "cgi-bin/"
 # xmlpad = "C:/phpdev/www/pythoneer/Muziek/"
-cssfile = "http://muziek.pythoneer.nl/muziek.css"
-htmlpad ="/home/albert/www/pythoneer/muziek/"
+cssfile = httppad + "muziek.css"
+htmlpad = "/home/albert/www/lemoncurry/muziek/"
+docroot = "/home/albert/pythoneer/muziek/data"
 import sys
 sys.path.append(docroot) # waar de eigenlijke programmatuur staat
 

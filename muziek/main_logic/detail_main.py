@@ -42,13 +42,17 @@ class Detail(object):
         self.artiest = self.titel = self.bezetting = ""
         self.zoeksoort = self.zoektekst = self.sortering = ""
         if self.albumtype == 'studio':
-            self.label = self.jaar = self.produced = self.credits = self.volgnr = ""
+            self.label = self.jaar = self.producer = self.credits = self.volgnr = ""
         elif self.albumtype == 'live':
             self.locatie = self.datum = ""
         self.tracks = []
+        self.trackid, self.tracknaam = None, ''
         self.opnames = []
+        self.opnamesoort = self.opnamenaam = ''
 
     def set_arg(self,x,y):
+        if y is None:
+            return
         if x == "albumid":
             if y != 0:
                 self.id = y
@@ -62,30 +66,6 @@ class Detail(object):
             self.wijzigO = y
         elif x == "nieuw":
             self.nieuw_album = y
-        ## elif x == "artiest":
-            ## self.Artiest = y
-        ## elif x == "titel":
-            ## self.Titel = y
-        ## elif x == "label":
-            ## self.Label = y
-        ## elif x == "jaar":
-            ## self.Jaar = y
-        ## elif x == "producer":
-            ## self.Produced = y
-        ## elif x == "credits":
-            ## self.Credits = y
-        ## elif x == "bezetting":
-            ## self.Bezetting = y
-        ## elif x == "locatie":
-            ## self.locatie = y
-        ## elif x == "datum":
-            ## self.datum = y
-        ## elif x == "volgnr":
-            ## self.volgnr = y
-        ## elif x == "tracks":
-            ## self.Tracks = y
-        ## elif x == "opnames":
-            ## self.Opnames = y
         elif x == "tracks":
             for z in y.split("\n"):
                 self.tracks.append(z)
@@ -97,25 +77,34 @@ class Detail(object):
         self.ok = True
         if self.artiest == "":
             self.regels.append(fouttekst % (globals.htmlpad,
-                "wijzigen niet mogelijk, artiestnaam onbekend"))
-            return
-        if self.titel != "":
-            self.regels.append(fouttekst % (globals.htmlpad,
-                "wijzigen niet mogelijk, titel onbekend"))
+                "wijzigen niet mogelijk, artiestnaam niet ingevuld"))
             return
         if self.albumtype == 'studio':
+            if self.titel == "":
+                self.regels.append(fouttekst % (globals.htmlpad,
+                    "wijzigen niet mogelijk, titel niet ingevuld"))
+                return
             dh = Album(self.id)
         elif self.albumtype == 'live':
+            if self.datum == "":
+                self.regels.append(fouttekst % (globals.htmlpad,
+                    "wijzigen niet mogelijk, datum niet ingevuld"))
+                return
             dh = Concert(self.id)
         dh.read()
         dh.artiest = self.artiest
-        dh.titel = self.titel.replace("&","&amp;")
+        if self.titel:
+            dh.titel = self.titel.replace("&","&amp;")
+        if self.locatie:
+            dh.locatie = self.locatie.replace("&","&amp;")
+        if self.datum:
+            dh.datum = self.datum.replace("&","&amp;")
         if self.label:
             dh.label = self.label.replace("&","&amp;")
         if self.jaar:
             dh.jaar = self.jaar
-        if self.produced:
-            dh.producer = self.produced.replace("&","&amp;")
+        if self.producer:
+            dh.producer = self.producer.replace("&","&amp;")
         if self.credits:
             dh.credits = self.credits.replace("&","&amp;")
         if self.bezetting:
@@ -126,6 +115,11 @@ class Detail(object):
                 dh.rem_track(y)
             for y in trks:
                 dh.add_track(y.rstrip().replace("&","&amp;"))
+        if self.trackid != '':
+            if self.trackid == 0: # new track
+                dh.add_track()
+            else:
+                dh.tracks[self.trackid - 1] = self.tracknaam
         if self.opnames:
             opn = self.opnames.split("\n")
             # hier is het ingewikkelder omdat het eerste deel van de tekst

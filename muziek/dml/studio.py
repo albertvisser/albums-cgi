@@ -136,9 +136,9 @@ class UpdateAlbum(XMLGenerator):
     def __init__(self, item):
         self.dh = item
         self.search_item = self.dh.id
-        self.fh = open(self.dh.fn,'w')
+        self._out = open(self.dh.fn,'w')
         self.founditem = self.itemfound = self.nowrite = False
-        XMLGenerator.__init__(self,self.fh)
+        XMLGenerator.__init__(self,self._out)
 
     def startElement(self, name, attrs):
     #-- kijk of we met het te wijzigen item bezig zijn

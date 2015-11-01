@@ -4,7 +4,7 @@ from live import concertlist
 from artiest import Artiest, artiestenlijst
 startform = """\
   <div class="wide"><span>
-     <form action="http://muziek.pythoneer.nl/cgi-bin/muziek_select.py" method="post">
+     <form action="/cgi-bin/muziek_select.py" method="post">
       Snel naar dezelfde selectie voor een andere artiest:
       <select name="selArtiest" id="selArtiest" onchange="form.submit()">
        <option value="0">-- selecteer --</option>

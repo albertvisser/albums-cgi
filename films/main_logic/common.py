@@ -2,8 +2,8 @@ import os
 HERE = os.path.dirname(__file__)
 xmlpad = os.path.join(HERE, "data")
 htmlpad = os.path.join(os.path.dirname(os.path.dirname(HERE)),
-    "www/pythoneer/films/")
-httppad = "http://www.pythoneer.nl/films/"
+    "www/lemoncurry/films/")
+httppad = "http://www.lemoncurry.nl/films/"
 import sys
 sys.path.append(xmlpad) # pad naar de gegevens
 

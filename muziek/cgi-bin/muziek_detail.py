@@ -39,11 +39,13 @@ def main():
     if not albumid:
         foutregel = 'Geen albumid opgegeven'
     elif eerst_wijzigen:
-        if form.getfirst("hWijzig", None) == "1":
-            albumid = 0
+        if form.getfirst("hWijzig", None) == "1": # deze is aan het begin al opgepikt
+            albumid = 0                       # wordt dit niet ook al bij hNieuw gedaan?
         dm = Detail(albumtype, wijzig, albumid)
         dm.artiest = form.getfirst("selArtiest", None)
         dm.titel = form.getfirst("txtTitel", None)
+        dm.locatie = form.getfirst("txtLoc", None)
+        dm.datum = form.getfirst("txtDatum", None)
         dm.label = form.getfirst("txtLabel", None)
         dm.jaar = form.getfirst("txtJaar", None)
         dm.producer = form.getfirst("txtProduced", None)
@@ -60,6 +62,7 @@ def main():
     print("Content-Type: text/html\n")     # HTML is following
     if foutregel != '':
         print(meldfout(foutregel, "Magiokis Muziek!"))
+        cgi.print_form(form)
     else:
         dm.toon()
         for x in dm.regels:

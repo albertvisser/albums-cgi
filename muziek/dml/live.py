@@ -97,9 +97,9 @@ class UpdateConcert(XMLGenerator):
     def __init__(self, item):
         self.dh = item
         self.search_item = self.dh.id
-        self.fh = open(self.dh.fn,'w')
+        self._out = open(self.dh.fn,'w')
         self.founditem = self.itemfound = self.nowrite = False
-        XMLGenerator.__init__(self,self.fh)
+        XMLGenerator.__init__(self,self._out)
 
     def startElement(self, name, attrs):
     #-- kijk of we met het te wijzigen item bezig zijn
@@ -320,7 +320,7 @@ class Concert:
                     self.opnames.append(y)
 
     def write(self):
-        copyfile(self.fn,self.fno)
+        shutil.copyfile(self.fn,self.fno)
         parser = make_parser()
         parser.setFeature(feature_namespaces, 0)
         dh = UpdateConcert(self)
