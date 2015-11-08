@@ -48,7 +48,8 @@ class Detail(object):
         self.tracks = []
         self.trackid, self.tracknaam = None, ''
         self.opnames = []
-        self.opnamesoort = self.opnamenaam = ''
+        ## self.opnamesoort = self.opnamenaam = '' voor als ik soort ga laten kiezen
+        self.opnameid, self.opnamenaam = None, ''
 
     def set_arg(self,x,y):
         if y is None:
@@ -109,24 +110,24 @@ class Detail(object):
             dh.credits = self.credits.replace("&","&amp;")
         if self.bezetting:
             dh.bezetting = self.bezetting.replace("&","&amp;")
-        if self.tracks:
-            trks = self.tracks.split("\n")
-            for y in dh.tracks:
-                dh.rem_track(y)
-            for y in trks:
-                dh.add_track(y.rstrip().replace("&","&amp;"))
-        if self.trackid != '':
-            if self.trackid == 0: # new track
-                dh.add_track()
-            else:
-                dh.tracks[self.trackid - 1] = self.tracknaam
-        if self.opnames:
-            opn = self.opnames.split("\n")
-            # hier is het ingewikkelder omdat het eerste deel van de tekst
-            # bestaat uit een waarde die eigenlijk uit een selectielijst moet komen
+        ## if self.tracks:
+            ## trks = self.tracks.split("\n")
+            ## for y in dh.tracks:
+                ## dh.rem_track(y)
+            ## for y in trks:
+                ## dh.add_track(y.rstrip().replace("&","&amp;"))
+        ## if self.trackid != '':
+            ## if self.trackid == 0: # new track
+                ## dh.add_track()
+            ## else:
+                ## dh.tracks[self.trackid - 1] = self.tracknaam
+        ## if self.opnames:
+            ## opn = self.opnames.split("\n")
+            ## # hier is het ingewikkelder omdat het eerste deel van de tekst
+            ## # bestaat uit een waarde die eigenlijk uit een selectielijst moet komen
         dh.write()
 
-    def toon(self):
+    def toon(self, nieuw=False):
         if self.albumtype == 'studio':
             ih = Album(self.id)
             fnaam = "detail.html"
@@ -137,11 +138,12 @@ class Detail(object):
             self.regels.append(fouttekst % (globals.htmlpad,
                 "Geen albumtype opgegeven"))
             return
-        ih.read()
-        if not ih.found:
-            self.regels.append(fouttekst % (globals.htmlpad,
-                "Album-gegevens niet aanwezig"))
-            return
+        if not nieuw:
+            ih.read()
+            if not ih.found:
+                self.regels.append(fouttekst % (globals.htmlpad,
+                    "Album-gegevens niet aanwezig"))
+                return
         artiest = ih.artiest
         dh = Artiest(ih.artiest, '0')
         titel = label = jaar = volgnr = producer = credits = locatie = datum = ""

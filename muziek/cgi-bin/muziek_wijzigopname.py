@@ -23,14 +23,14 @@ def main():
     elif albumtype == '':
         foutregel = "Geen album type gekozen"
     else:
-        foutregel = "Afzonderlijk wijzigen tracks nog niet mogelijk"
+        foutregel = "Afzonderlijk wijzigen opnames nog niet mogelijk"
         ## dm = Detail(albumtype, wijzigO, albumid)
-        ## trackid = form.getfirst('hTrackId', None)
-        ## if trackid is None:
-            ## foutregel = "Geen track nummer opgegeven"
+        ## opn_id = form.getfirst('hOpnId', None)
+        ## if opn_id is None:
+            ## foutregel = "Geen opname nummer opgegeven"
         ## else:
-            ## dm.trackid = trackid
-            ## dm.tracknaam = form.getfirst('txtTrack{}'.format(hTrackid), '')
+            ## dm.opnameid = opnid
+            ## dm.opnameoms = form.getfirst('txtOpn{}'.format(hOpnid), '')
             ## h = dm.wijzig() # albumtype,albumid
 
     print("Content-Type: text/html\n")     # HTML is following

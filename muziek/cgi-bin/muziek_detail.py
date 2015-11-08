@@ -20,27 +20,27 @@ def main():
     elif "hLive" in form or "hLiveN" in form:   # komt vanuit .. of startscherm
         albumtype = 'live'
     else:
-        albumtype = form.getfirst("hTypeAlbum", '') # komt vanuit detailscherm bij wijzigen
+        albumtype = form.getfirst("hAlbumType", '') # komt vanuit detailscherm bij wijzigen
         if not albumtype:
-            albumtype = form.getfirst("hType", '')  # komt mee vanuit selectiescherm
+            albumtype = form.getfirst("hType", '')  # komt mee vanuit selectiescherm: album selector
     wijzig = form.getfirst("hWijzig", 0)       # komt vanuit detailscherm
-    albumid = None
-    if "hNieuw" in form:                      # komt vanuit startscherm
-        # er valt nog niks aan te passen want er was nog niks ingevuld
-        dm = Detail(albumtype, wijzig=True)
-        albumid = dm.album_id
-    eerst_wijzigen = False
+    nieuw = eerst_wijzigen = False
     albumid = form.getfirst("selAlbum", None)
     if not albumid:
         albumid = form.getfirst("hId", None)
     if not albumid:
-        albumid = form.getfirst("hIdAlbum", None)
+        albumid = form.getfirst("hAlbumId", None)
         eerst_wijzigen = True
     if not albumid:
-        foutregel = 'Geen albumid opgegeven'
+        if "hNieuw" in form:                      # komt vanuit startscherm
+            nieuw = True
+            dm = Detail(albumtype, wijzig=nieuw)
+            albumid = dm.id
+        else:
+            foutregel = 'Geen albumid opgegeven'
     elif eerst_wijzigen:
-        if form.getfirst("hWijzig", None) == "1": # deze is aan het begin al opgepikt
-            albumid = 0                       # wordt dit niet ook al bij hNieuw gedaan?
+        ## if form.getfirst("hWijzig", None) == "1": # deze is aan het begin al opgepikt
+            ## albumid = 0                       # wordt dit niet ook al bij hNieuw gedaan?
         dm = Detail(albumtype, wijzig, albumid)
         dm.artiest = form.getfirst("selArtiest", None)
         dm.titel = form.getfirst("txtTitel", None)
@@ -51,8 +51,8 @@ def main():
         dm.producer = form.getfirst("txtProduced", None)
         dm.credits = form.getfirst("txtCredits", None)
         dm.bezetting = form.getfirst("txtBezetting", None)
-        dm.tracks = form.getfirst("listTracks", None)
-        dm.opnames = form.getfirst("listOpnames", None)
+        ## dm.tracks = form.getfirst("listTracks", None)
+        ## dm.opnames = form.getfirst("listOpnames", None)
         h = dm.wijzig() # albumtype,albumid
     else:
         dm = Detail(albumtype, wijzig, albumid)
@@ -64,7 +64,7 @@ def main():
         print(meldfout(foutregel, "Magiokis Muziek!"))
         cgi.print_form(form)
     else:
-        dm.toon()
+        dm.toon(nieuw=nieuw)
         for x in dm.regels:
             try:
                 print(x)
