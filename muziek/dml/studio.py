@@ -136,9 +136,9 @@ class UpdateAlbum(XMLGenerator):
     def __init__(self, item):
         self.dh = item
         self.search_item = self.dh.id
-        self._out = open(self.dh.fn,'w')
+        self._out = open(self.dh.fn, 'w', encoding='utf-8')
         self.founditem = self.itemfound = self.nowrite = False
-        XMLGenerator.__init__(self,self._out)
+        XMLGenerator.__init__(self, self._out, encoding='utf-8')
 
     def startElement(self, name, attrs):
     #-- kijk of we met het te wijzigen item bezig zijn
@@ -162,38 +162,44 @@ class UpdateAlbum(XMLGenerator):
             if not self.founditem:
                 if name == 'studio':
                     if not self.itemfound:
-                        self.startElement("album",{"id": self.dh.Id})
+                        self.startElement("album", {"id": self.dh.id})
                         self.endElement("album")
-                        self._out.write("\n  ")
+                        ## self._out.write("\n  ")
+                        ## self._out.write("\n")
                     self._out.write('</studio>\n')
                 else:
                     XMLGenerator.endElement(self, name)
             else:
                 if name == 'album':
-                    self._out.write('  <album id="%s"' % self.dh.id)
-                    self._out.write(' artiest="%s"' % self.dh.artiest)
-                    self._out.write(">\n")
-                    self._out.write('    <titel>%s</titel>\n' % self.dh.titel)
-                    self._out.write('    <label>%s</label>\n' % self.dh.label)
-                    self._out.write('    <jaar>%s</jaar>\n' % self.dh.jaar)
-                    self._out.write('    <volgnr>%s</volgnr>\n' % self.dh.volgnr)
-                    self._out.write('    <producer>%s</producer>\n' %
+                    self._out.write('<album id="%s"' % self.dh.id)
+                    self._out.write(' artiest="%s">\n' % self.dh.artiestid)
+                    self._out.write('  <titel>%s</titel>\n' % self.dh.titel)
+                    self._out.write('  <label>%s</label>\n' % self.dh.label)
+                    self._out.write('  <jaar>%s</jaar>\n' % self.dh.jaar)
+                    self._out.write('  <volgnr>%s</volgnr>\n' % self.dh.volgnr)
+                    self._out.write('  <producer>%s</producer>\n' %
                         self.dh.producer)
-                    self._out.write('    <credits>%s</credits>\n' %
+                    self._out.write('  <credits>%s</credits>\n' %
                         self.dh.credits)
-                    self._out.write('    <bezetting>%s</bezetting>\n' %
+                    self._out.write('  <bezetting>%s</bezetting>\n' %
                         self.dh.bezetting)
                     for ix, x in enumerate(self.dh.tracks):
-                        self._out.write('    <track volgnr="%i">%s</track>\n' %
+                        self._out.write('  <track volgnr="%i">%s</track>\n' %
                             (ix + 1, x))
                     for x in self.dh.opnames:
-                        self._out.write('    <opname type="%s" />\n' % (x))
-                    self._out.write('  </album>\n')
+                        self._out.write('  <opname ')
+                        test = x.split(' - ', 1)
+                        type = test[0]
+                        if len(test) > 1:
+                            oms = test[1]
+                            self._out.write('desc="%s" ' % oms)
+                        self._out.write('type="%s" />\n' % type)
+                    self._out.write('</album>\n')
                     self.founditem = False
 
     def endDocument(self):
 ##        XMLGenerator.endDocument(self)
-        self.fh.close()
+        self._out.close()
 
 class SearchAlbum(ContentHandler):
     "Bevat de gegevens van een bepaald item"
@@ -388,7 +394,7 @@ class Album:
         self.fn = datafile
         self.fno = backup
         self.found = False
-        self.artiest = self.titel = self.label = self.jaar = ""
+        self.artiestid = self.artiest = self.titel = self.label = self.jaar = ""
         self.volgnr = self.producer = self.credits = self.bezetting = ""
         self.tracks = []
         self.opnames = []
@@ -409,8 +415,8 @@ class Album:
         self.found = dh.itemfound
         if self.found:
             if dh.artiest is not None:
-#                self.artiest = dh.artiest
-                ah = Artiest(dh.artiest, '1')
+                self.artiestid = dh.artiest
+                ah = Artiest(dh.artiest)
                 self.artiest = ah.naam
             if dh.titel is not None:
                 self.titel = dh.titel
@@ -440,7 +446,7 @@ class Album:
                 for x in dh.opnames:
                     y = x[0]
                     if x[1] != "":
-                        y = y + " " + x[1]
+                        y = y + " - " + x[1]
                     self.opnames.append(y)
 
     def write(self):

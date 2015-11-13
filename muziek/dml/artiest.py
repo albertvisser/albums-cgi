@@ -115,25 +115,15 @@ def artiestenlijst():
     parser.setContentHandler(dh)
     parser.parse(artiestenfile)
     if len(dh.namenlijst) > 0:
-        ## s = []
-        ## for x in dh.namenlijst:
-            ## h = ("%s;#;%s;#;%s" % (x[0], x[1], x[2]))
-            ## s.append(h)
-        ## s.sort()
-        ## for x in s:
-            ## y = x.split(";#;")
-            ## namen.append([y[1], y[2], y[0]])
         for x, y, z in sorted(dh.namenlijst):
             namen.append((y, z, x))
         return namen
 
 class Artiest(object):
-    def __init__(self,item,sel="0"):
+    def __init__(self, item, find_by_name=False):
         self.fn = artiestenfile
         self.fno = "_oud".join(os.path.splitext(self.fn))
         self.zoek_item = item
-        zoek_id = 0
-        zoek_naam = 0
         self.id = 0
         self.naam = ""
         self.sort = ""
@@ -149,11 +139,9 @@ class Artiest(object):
         else:
             self.id = 0
             self.naam = ""
-            if sel == 0 or sel == "0":
-                zoek_id = 1
+            if find_by_name:
                 self.naam = item
-            if sel == 1 or sel == "1":
-                zoek_naam = 1
+            else:
                 self.id = item
             # Create a parser
             parser = make_parser()
@@ -167,18 +155,18 @@ class Artiest(object):
                 parser.setContentHandler(dh)
                 parser.parse(self.fn)
                 self.id = str(int(dh.id) + 1)
-            if zoek_id:
+            if find_by_name:
                 dh = ZoekopNaam(item)
-            if zoek_naam:
+            else:
                 dh = ZoekopId(item)
             # Tell the parser to use our handler
             parser.setContentHandler(dh)
             # Parse the input
             parser.parse(self.fn)
             if dh.founditem:
-                if zoek_id:
+                if find_by_name:
                     self.id = dh.id
-                if zoek_naam:
+                else:
                     self.naam = dh.naam
                 self.sort = dh.sort
 

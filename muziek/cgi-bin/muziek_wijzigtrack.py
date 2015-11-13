@@ -23,16 +23,15 @@ def main():
     elif albumtype == '':
         foutregel = "Geen album type gekozen"
     else:
-        foutregel = "Afzonderlijk wijzigen tracks nog niet mogelijk"
-        ## dm = Detail(albumtype, wijzigO, albumid)
-        ## trackid = form.getfirst('hTrackId', None)
-        ## if trackid is None:
-            ## foutregel = "Geen track nummer opgegeven"
-        ## else:
-            ## dm.trackid = trackid
-            ## dm.tracknaam = form.getfirst('txtTrack{}'.format(hTrackid), '')
-            ## h = dm.wijzig() # albumtype,albumid
-
+        dm = Detail(albumtype, wijzigO, albumid)
+        trackid = form.getfirst('hTrackId', None)
+        if trackid is None:
+            foutregel = "Geen track nummer opgegeven"
+        else:
+            dm.trackid = int(trackid)
+            dm.tracknaam = form.getfirst('txtTrack{}'.format(trackid), '')
+            h = dm.wijzig() # albumtype,albumid
+            if dm.regels: foutregel = dm.regels[0]
     print("Content-Type: text/html\n")     # HTML is following
     if foutregel != '':
         print(meldfout(foutregel, "Magiokis Muziek!"))

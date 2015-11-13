@@ -74,7 +74,7 @@ class Select(object):
             self.zoektekst = ""
         if self.selecteren == "artiest":
             self.selection[self.selecteren] = self.zoektekst
-            ah = Artiest(self.zoektekst, '1')
+            ah = Artiest(self.zoektekst)
             self.onthouden_zoektekst = self.zoektekst
             self.zoektekst = ah.naam
         else:
@@ -112,14 +112,10 @@ class Select(object):
             h += ': selectie op %s "%s"' % (self.selecteren, self.zoektekst)
         if self.sorteren == "":
             h += "; geen sortering"
-            ## for x in self.itemlist:
-                ## y = [x[0], x[1], x[2]]
-                ## self.sl.append(y)
         else:
             h += '; sortering op %s' % self.sorteren
             sortlist = []
             if self.sorteren == 'titel':
-                ## sortlist = [";#;".join(x) for x in self.itemlist]
                 for x in self.itemlist:
                     y = x[2] + ";#;" + x[1] + ";#;" + x[0]
                     sortlist.append(y)
@@ -161,15 +157,10 @@ class Select(object):
             h += ': selectie op %s "%s"' % (self.selecteren, self.zoektekst)
         if self.sorteren == "":
             h += "; geen sortering"
-            ## for x in self.fl.Items:
-                ## y = [x[0], x[1], x[2], x[3]]
-                ## self.sl.append(y)
         else:
             h = h + ('; sortering op %s' % self.sorteren)
             sortlist = []
             if self.sorteren == "plaats":
-                ## sortlist = [";#;".join((x[2], x[3], x[1], x[0]))
-                    ## for x in self.itemlist]
                 for x in self.itemlist:
                     y = x[2] + ";#;" + x[3] + ";#;" + x[1] + ";#;" + x[0]
                     sortlist.append(y)

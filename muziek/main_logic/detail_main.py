@@ -5,7 +5,7 @@ from studio import Album, albumlist
 from live import Concert, concertlist
 
 fouttekst = """\
-<html><head><link rel="stylesheet" href="%sfilms.css" type="text/css"></head>
+<html><head><link rel="stylesheet" href="/muziek.css" type="text/css"></head>
 <body><h1>Albert Muziek!</h1><hr />%s</body></html>
 """
 hidden_inputs = """\
@@ -39,7 +39,7 @@ class Detail(object):
             dh = Concert(0)
             self.id = dh.id
         self.nieuw_album = False
-        self.artiest = self.titel = self.bezetting = ""
+        self.artiestid = self.artiest = self.titel = self.bezetting = ""
         self.zoeksoort = self.zoektekst = self.sortering = ""
         if self.albumtype == 'studio':
             self.label = self.jaar = self.producer = self.credits = self.volgnr = ""
@@ -48,7 +48,6 @@ class Detail(object):
         self.tracks = []
         self.trackid, self.tracknaam = None, ''
         self.opnames = []
-        ## self.opnamesoort = self.opnamenaam = '' voor als ik soort ga laten kiezen
         self.opnameid, self.opnamenaam = None, ''
 
     def set_arg(self,x,y):
@@ -75,59 +74,47 @@ class Detail(object):
                 self.opnames.append(z)
 
     def wijzig(self):
+        self.regels = []
         self.ok = True
-        if self.artiest == "":
-            self.regels.append(fouttekst % (globals.htmlpad,
-                "wijzigen niet mogelijk, artiestnaam niet ingevuld"))
-            return
         if self.albumtype == 'studio':
-            if self.titel == "":
-                self.regels.append(fouttekst % (globals.htmlpad,
-                    "wijzigen niet mogelijk, titel niet ingevuld"))
-                return
             dh = Album(self.id)
         elif self.albumtype == 'live':
-            if self.datum == "":
-                self.regels.append(fouttekst % (globals.htmlpad,
-                    "wijzigen niet mogelijk, datum niet ingevuld"))
-                return
             dh = Concert(self.id)
         dh.read()
-        dh.artiest = self.artiest
-        if self.titel:
-            dh.titel = self.titel.replace("&","&amp;")
-        if self.locatie:
-            dh.locatie = self.locatie.replace("&","&amp;")
-        if self.datum:
-            dh.datum = self.datum.replace("&","&amp;")
-        if self.label:
-            dh.label = self.label.replace("&","&amp;")
-        if self.jaar:
-            dh.jaar = self.jaar
-        if self.producer:
-            dh.producer = self.producer.replace("&","&amp;")
-        if self.credits:
-            dh.credits = self.credits.replace("&","&amp;")
+        if self.artiestid:
+            dh.artiestid = self.artiestid #.replace("&","&amp;")
+        if self.albumtype == 'studio':
+            if self.titel:
+                dh.titel = self.titel.replace("&","&amp;")
+            if self.label:
+                dh.label = self.label.replace("&","&amp;")
+            if self.jaar:
+                dh.jaar = self.jaar
+            if self.producer:
+                dh.producer = self.producer.replace("&","&amp;")
+            if self.credits:
+                dh.credits = self.credits.replace("&","&amp;")
+        elif self.albumtype == 'live':
+            if self.locatie:
+                dh.locatie = self.locatie.replace("&","&amp;")
+            if self.datum:
+                dh.datum = self.datum.replace("&","&amp;")
         if self.bezetting:
             dh.bezetting = self.bezetting.replace("&","&amp;")
-        ## if self.tracks:
-            ## trks = self.tracks.split("\n")
-            ## for y in dh.tracks:
-                ## dh.rem_track(y)
-            ## for y in trks:
-                ## dh.add_track(y.rstrip().replace("&","&amp;"))
-        ## if self.trackid != '':
-            ## if self.trackid == 0: # new track
-                ## dh.add_track()
-            ## else:
-                ## dh.tracks[self.trackid - 1] = self.tracknaam
-        ## if self.opnames:
-            ## opn = self.opnames.split("\n")
-            ## # hier is het ingewikkelder omdat het eerste deel van de tekst
-            ## # bestaat uit een waarde die eigenlijk uit een selectielijst moet komen
+        if self.trackid is not None:
+            if self.trackid == 0: # new track
+                dh.add_track(self.tracknaam)
+            else:
+                dh.tracks[self.trackid - 1] = self.tracknaam
+        if self.opnameid is not None:
+            if self.opnameid == 0: # new opname
+                dh.add_opname(self.opnameoms)
+            else:
+                dh.opnames[self.opnameid - 1] = self.opnameoms
         dh.write()
 
     def toon(self, nieuw=False):
+        self.regels = []
         if self.albumtype == 'studio':
             ih = Album(self.id)
             fnaam = "detail.html"
@@ -135,17 +122,15 @@ class Detail(object):
             ih = Concert(self.id)
             fnaam = "detail_live.html"
         else:
-            self.regels.append(fouttekst % (globals.htmlpad,
-                "Geen albumtype opgegeven"))
+            self.regels.append(fouttekst % "Geen albumtype opgegeven")
             return
         if not nieuw:
             ih.read()
             if not ih.found:
-                self.regels.append(fouttekst % (globals.htmlpad,
-                    "Album-gegevens niet aanwezig"))
+                self.regels.append(fouttekst % "Album-gegevens niet aanwezig")
                 return
+        artiestid = ih.artiestid
         artiest = ih.artiest
-        dh = Artiest(ih.artiest, '0')
         titel = label = jaar = volgnr = producer = credits = locatie = datum = ""
         itemlist = []
         if self.albumtype == 'studio':
@@ -155,11 +140,12 @@ class Detail(object):
             volgnr = ih.volgnr
             producer = ih.producer
             credits = ih.credits
-            itemlist = albumlist(['artiest','titel'],{"artiest": dh.id})
+            itemlist = albumlist(['artiest', 'titel'], {"artiest": ih.artiestid})
         if self.albumtype == 'live':
             locatie = ih.locatie
             datum = ih.datum
-            itemlist = concertlist(['artiest','locatie','datum'],{"artiest": dh.id})
+            itemlist = concertlist(['artiest', 'locatie', 'datum'], {"artiest":
+                ih.artiestid})
         bezetting = ih.bezetting
         tracks = ih.tracks
         opnames = ih.opnames
@@ -228,11 +214,6 @@ class Detail(object):
                                 self.regels.append(y % producer)
                             else:
                                 self.regels.append(y)
-                    ## elif xh[1] == "producer" and producer != "":
-                        ## # <!-- producer --> 14
-                        ## p = x[14:]
-                        ## p = p[:-4]
-                        ## self.regels.append(p.replace("%s",producer))
                     elif xh[1] == 'credits':
                         in_cred = True
                         cred_lines = []
@@ -245,11 +226,6 @@ class Detail(object):
                                 self.regels.append(y % credits)
                             else:
                                 self.regels.append(y)
-                    ## elif xh[1] == "credits" and credits != "":
-                        ## # <!-- credits --> 13
-                        ## p = x[13:]
-                        ## p = p[:-4]
-                        ## self.regels.append(p.replace("%s",credits))
                     elif xh[1] == 'bezetting':
                         in_bezet = True
                         bezet_lines = []
@@ -262,19 +238,6 @@ class Detail(object):
                                 self.regels.append(y % bezetting)
                             else:
                                 self.regels.append(y)
-                    ## elif xh[1] == "bezetting" and bezetting != "":
-                        ## # <!-- bezetting --> 15
-                        ## p = x[15:]
-                        ## p = p[:-4]
-                        ## self.regels.append(p.replace("%s",bezetting))
-                    ## elif xh[1] == "nummer":
-                        ## # <!-- nummer titel    <option value="%s">%s</option>         -->
-                        ## p = x[18:]
-                        ## p = p[:-4]
-                        ## for y in tracks:
-                            ## pp = p.replace("%s",str(tracknr),1)
-                            ## self.regels.append(pp.replace("%s",y,1))
-                            ## tracknr = tracknr + 1
                     elif xh[1] == 'startTrackList':
                         in_tracklist = True
                         tr_regels = []
@@ -297,15 +260,17 @@ class Detail(object):
                             self.regels.append(tr_regels[13])
                             self.regels.append(tr_regels[14])
                             tracknr = tracknr + 1
-                        self.regels.append(tr_regels[15])
-                    ## elif xh[1] == "nr":
-                        ## # <!-- nr soort rest  <option value="%s">%s%s</option>         -->
-                        ## p = x[18:]
-                        ## p = p[:-4]
-                        ## for y in opnames:
-                            ## pp = p.replace("%s",str(opnamenr),1)
-                            ## self.regels.append(pp.replace("%s",y,1))
-                            ## opnamenr = opnamenr + 1
+                        self.regels.append(tr_regels[15] % globals.cgipad)
+                        self.regels.append(tr_regels[16])
+                        self.regels.append(tr_regels[17])
+                        self.regels.append(tr_regels[18] % self.id)
+                        self.regels.append(tr_regels[19] % self.albumtype)
+                        self.regels.append(tr_regels[20])
+                        self.regels.append(tr_regels[21])
+                        self.regels.append(tr_regels[22])
+                        self.regels.append(tr_regels[23])
+                        self.regels.append(tr_regels[24])
+                        self.regels.append(tr_regels[25])
                     elif xh[1] == 'startOpnList':
                         in_opnamelist = True
                         op_regels = []
@@ -313,7 +278,7 @@ class Detail(object):
                         in_opnamelist = False
                         self.regels.append(op_regels[0])
                         self.regels.append(op_regels[1])
-                        self.regels.append(tr_regels[2])
+                        self.regels.append(op_regels[2])
                         for y in opnames:
                             self.regels.append(op_regels[3] % str(opnamenr))
                             self.regels.append(op_regels[4])
@@ -327,12 +292,20 @@ class Detail(object):
                             self.regels.append(op_regels[12])
                             opnamenr = opnamenr + 1
                         self.regels.append(op_regels[13])
+                        self.regels.append(op_regels[14])
+                        self.regels.append(op_regels[15])
+                        self.regels.append(op_regels[16] % self.id)
+                        self.regels.append(op_regels[17] % self.albumtype)
+                        self.regels.append(op_regels[18])
+                        self.regels.append(op_regels[19])
+                        self.regels.append(op_regels[20])
+                        self.regels.append(op_regels[21])
+                        self.regels.append(op_regels[22])
+                        self.regels.append(op_regels[23])
                     elif xh[1] == "wijzigO":
                         # <!-- wijzigO <input type="hidden" name="hWijzig" value="%s"> -->
                         hlp = "1" if self.wijzigen else "0"
                         self.regels.append('    ' + spc.join(xh[2:-1]) % hlp)
-                ## elif xh[0] == "-->":
-                    ## continue
                 else:
                     if in_prod:
                         prod_lines.append(x)

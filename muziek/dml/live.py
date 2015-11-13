@@ -97,9 +97,9 @@ class UpdateConcert(XMLGenerator):
     def __init__(self, item):
         self.dh = item
         self.search_item = self.dh.id
-        self._out = open(self.dh.fn,'w')
+        self._out = open(self.dh.fn, 'w', encoding='utf-8')
         self.founditem = self.itemfound = self.nowrite = False
-        XMLGenerator.__init__(self,self._out)
+        XMLGenerator.__init__(self, self._out, encoding='utf-8')
 
     def startElement(self, name, attrs):
     #-- kijk of we met het te wijzigen item bezig zijn
@@ -123,7 +123,7 @@ class UpdateConcert(XMLGenerator):
             if not self.founditem:
                 if name == 'live':
                     if not self.itemfound:
-                        self.startElement("concert", {"id":  self.dh.Id})
+                        self.startElement("concert", {"id":  self.dh.id})
                         self.endElement("concert")
                         self._out.write("\n  ")
                     self._out.write('</live>\n')
@@ -131,24 +131,30 @@ class UpdateConcert(XMLGenerator):
                     XMLGenerator.endElement(self, name)
             else:
                 if name == 'concert':
-                    self._out.write('  <concert id="%s"' % self.dh.id)
-                    self._out.write(' artiest="%s"' % self.dh.artiest)
+                    self._out.write('<concert id="%s"' % self.dh.id)
+                    self._out.write(' artiest="%s"' % self.dh.artiestid)
                     self._out.write(">\n")
-                    self._out.write('    <locatie>%s</locatie>\n' % self.dh.locatie)
-                    self._out.write('    <datum>%s</datum>\n' % self.dh.datum)
-                    self._out.write('    <bezetting>%s</bezetting>\n' %
+                    self._out.write('  <locatie>%s</locatie>\n' % self.dh.locatie)
+                    self._out.write('  <datum>%s</datum>\n' % self.dh.datum)
+                    self._out.write('  <bezetting>%s</bezetting>\n' %
                         self.dh.bezetting)
                     for ix, x in enumerate(self.dh.tracks):
-                        self._out.write('    <track volgnr="%i">%s</track>\n' %
+                        self._out.write('  <track volgnr="%i">%s</track>\n' %
                             (ix + 1, x))
                     for x in self.dh.opnames:
-                        self._out.write('    <opname type="%s" />\n' % (x))
-                    self._out.write('  </concert>\n')
+                        self._out.write('  <opname ')
+                        test = x.split(' - ', 1)
+                        type = test[0]
+                        if len(test) > 1:
+                            oms = test[1]
+                            self._out.write('desc="%s" ' % oms)
+                        self._out.write('type="%s" />\n' % type)
+                    self._out.write('</concert>\n')
                     self.founditem = False
 
     def endDocument(self):
 ##        XMLGenerator.endDocument(self)
-        self.fh.close()
+        self._out.close()
 
 class SearchConcert(ContentHandler):
     "Bevat de gegevens van een bepaald item"
@@ -273,7 +279,8 @@ class Concert:
         self.fn = datafile # naam van het xml bestand
         self.fno = backup # naam van de backup van het xml bestand
         self.found = False
-        self.artiest = self.locatie = self.datum = self.bezetting = ""
+        self.artiestid = self.artiest = self.locatie = self.datum = ''
+        self.bezetting = ""
         self.tracks = []
         self.opnames = []
         if self.id == "0" or self.id == 0:
@@ -293,8 +300,8 @@ class Concert:
         self.found = dh.itemfound
         if self.found:
             if dh.artiest is not None:
-                #  self.Artiest = dh.artiest
-                ah = Artiest(str(dh.artiest), '1')
+                self.artiestid = dh.artiest
+                ah = Artiest(dh.artiest)
                 self.artiest = ah.naam
             if dh.locatie is not None:
                 self.locatie = dh.locatie

@@ -39,10 +39,8 @@ def main():
         else:
             foutregel = 'Geen albumid opgegeven'
     elif eerst_wijzigen:
-        ## if form.getfirst("hWijzig", None) == "1": # deze is aan het begin al opgepikt
-            ## albumid = 0                       # wordt dit niet ook al bij hNieuw gedaan?
         dm = Detail(albumtype, wijzig, albumid)
-        dm.artiest = form.getfirst("selArtiest", None)
+        dm.artiestid = form.getfirst("selArtiest", None)
         dm.titel = form.getfirst("txtTitel", None)
         dm.locatie = form.getfirst("txtLoc", None)
         dm.datum = form.getfirst("txtDatum", None)
@@ -51,8 +49,6 @@ def main():
         dm.producer = form.getfirst("txtProduced", None)
         dm.credits = form.getfirst("txtCredits", None)
         dm.bezetting = form.getfirst("txtBezetting", None)
-        ## dm.tracks = form.getfirst("listTracks", None)
-        ## dm.opnames = form.getfirst("listOpnames", None)
         h = dm.wijzig() # albumtype,albumid
     else:
         dm = Detail(albumtype, wijzig, albumid)

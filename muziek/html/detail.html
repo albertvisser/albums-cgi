@@ -90,8 +90,8 @@
      <hr />
 <!-- startTrackList -->
     <div class="wide"><span class="left label vet">Tracks:</span>
-     <span class="right"><input type="button" value="nieuwe toevoegen"/>
-     <input type="button" value="Waarden terugzetten" onclick="history.go(-1)"/></span><br/><br/>
+     <span class="right">&nbsp;</span><br/>
+     <br/>
     </div>
     <div class="wide box">
        <form class="regel" action="%smuziek_wijzigtrack.py" method="post">
@@ -102,6 +102,16 @@
         <input type="hidden" name="hTrackId" value="%s" />
         <input type="text" name="txtTrack%s" size="60" maxlength="200" value="%s"/>
         <input type="submit" value="wijzig"/>
+      </span>
+       </form><br/>
+       <form class="regel" action="%smuziek_wijzigtrack.py" method="post">
+      <span class="l12 cntr">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+      <span>
+        <input type="hidden" name="hAlbumId" value="%s" />
+        <input type="hidden" name="hAlbumType" value="%s" />
+        <input type="hidden" name="hTrackId" value="0" />
+        <input type="text" name="txtTrack0" size="60" maxlength="200" value=""/>
+        <input type="submit" value="Nieuwe toevoegen"/>
       </span>
        </form><br/>
     </div>
@@ -120,16 +130,26 @@
      <hr />
 <!-- startOpnList -->
     <div class="wide"><span class="left label vet">Opnames:</span>
-     <span class="right"><input type="button" value="nieuwe toevoegen"/>
-     <input type="button" value="Waarden terugzetten" onclick="history.go(-1)"/></span></div>
+     <span class="right">&nbsp;</span>
+    </div>
     <div class="wide"><span class="left cntr">%s.</span>
      <span class="right">
       <form action="/cgi-bin/muziek_wijzigopname.py" method="post">
       <input type="hidden" name="hAlbumId" value="%s" />
       <input type="hidden" name="hAlbumType" value="%s" />
       <input type="hidden" name="hOpnId" value="%s" />
-      <input type="text" name="txtOpn%s" size="80" maxlength="200" value="%s"/>
+      <input type="text" name="txtOpn%s" size="70" maxlength="200" value="%s"/>
       <input type="submit" value="wijzig"/>
+      </form>
+     </span></div>
+    <div class="wide"><span class="left cntr">&nbsp;</span>
+     <span class="right">
+      <form action="/cgi-bin/muziek_wijzigopname.py" method="post">
+      <input type="hidden" name="hAlbumId" value="%s" />
+      <input type="hidden" name="hAlbumType" value="%s" />
+      <input type="hidden" name="hOpnId" value="0" />
+      <input type="text" name="txtOpn0" size="70" maxlength="200" value=""/>
+      <input type="submit" value="Nieuwe toevoegen"/>
       </form>
      </span></div>
    </div>
