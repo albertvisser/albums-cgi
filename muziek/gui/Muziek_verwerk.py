@@ -1,21 +1,17 @@
 import sys
-sys.path.append("F:\\pythoneer\\muziek\\data")
-from muziek_studio_met import AlbumList
-from muziek_studio_met import Album
-from muziek_live_met import ConcertList
-from muziek_live_met import Concert
-from muziek_artiest import Artiest
-from muziek_artiest import ArtiestenLijst
+sys.path.append("/home/albert/pythoneer/muziek/data")
+from studio import Album, albumlist
+from live import Concert, concertlist
+from artiest import Artiest, artiestenlijst
 
 class getArtiesten:
     "lees de artiestentabel"
 
     def __init__(self):
-        dh = ArtiestenLijst()
         self.ArtiestIds = []
         self.ArtiestNamen = []
         self.ArtiestSortkeys = []
-        for y in dh.Namen:
+        for y in artiestenlijst():
             self.ArtiestIds.append(y[0])
             self.ArtiestNamen.append(y[1])
             self.ArtiestSortkeys.append(y[2])
@@ -44,7 +40,7 @@ class getSelection:
             selection[which] = what
         if which == "artiest":
             ah = Artiest(what,'0')
-            selection[which] = ah.Id
+            selection[which] = ah.id
 
         if type == "studio":
             list = ['artiest','titel']
@@ -56,16 +52,16 @@ class getSelection:
 
         if len(selection) > 0:
             if type == "studio":
-                self.fl = AlbumList(list, selection)
+                self.fl = albumlist(list, selection)
             if type == "live":
-                self.fl = ConcertList(list, selection)
+                self.fl = concertlist(list, selection)
         else:
             if type == "studio":
-                self.fl = AlbumList(list)
+                self.fl = albumlist(list)
             if type == "live":
-                self.fl = ConcertList(list)
+                self.fl = concertlist(list)
 
-        if len(self.fl.Items) > 0:
+        if len(self.fl) > 0:
             self.sort()
 
     def sort(self):
@@ -75,7 +71,7 @@ class getSelection:
         # sorteren en weer te geven lijst samenstellen
         if self.type == "studio":
             if self.how == 'titel':
-                for x in self.fl.Items:
+                for x in self.fl:
                     y = x[2] + ";#;" + x[1] + ";#;" + x[0]
                     sortList.append(y)
                 sortList.sort()
@@ -84,7 +80,7 @@ class getSelection:
                     z = [y[2],y[1],y[0]]
                     sl.append(z)
             elif self.how == 'jaar':
-                for x in self.fl.Items:
+                for x in self.fl:
                     y = x[3] + x[4] + ";#;" + x[2] + ";#;" + x[1] + ";#;" + x[0]
                     sortList.append(y)
                 sortList.sort()
@@ -94,7 +90,7 @@ class getSelection:
                     sl.append(z)
             elif self.how == 'artiest':
                 # via de aparte sorteersleutel
-                for x in self.fl.Items:
+                for x in self.fl:
                     ah = Artiest(x[1].decode('ISO-8859-1'), '0')
                     y = ah.sort + ";#;" + x[2] + ";#;" + x[1] + ";#;" + x[0]
                     sortList.append(y)
@@ -104,7 +100,7 @@ class getSelection:
                     z = [y[3],y[2],y[1]]
                     sl.append(z)
             else:
-                for x in self.fl.Items:
+                for x in self.fl:
                     y = [x[0], x[1], x[2]]
                     sl.append(y)
             for y in sl:
@@ -118,7 +114,7 @@ class getSelection:
                 self.keylist.append(y[0])
         if self.type == "live":
             if self.how == "plaats":
-                for x in self.fl.Items:
+                for x in self.fl:
                     y = x[2] + ";#;" + x[3] + ";#;" + x[1] + ";#;" + x[0]
                     sortList.append(y)
                 sortList.sort()
@@ -127,7 +123,7 @@ class getSelection:
                     z = [y[4],y[3],y[1],y[2]]
                     sl.append(z)
             elif self.how == "datum":
-                for x in self.fl.Items:
+                for x in self.fl:
                     y = x[3] + ";#;" + x[1] + ";#;" + x[2] + ";#;" + x[0]
                     sortList.append(y)
                 sortList.sort()
@@ -137,7 +133,7 @@ class getSelection:
                     sl.append(z)
             elif self.how == 'artiest':
                 # via de aparte sorteersleutel
-                for x in self.fl.Items:
+                for x in self.fl:
                     ah = Artiest(x[1], '0')
                     y = ah.sort + ";#;" + x[2] + ";#;" + x[3] + ";#;" + x[1] + ";#;" + x[0]
                     sortList.append(y)
@@ -147,7 +143,7 @@ class getSelection:
                     z = [y[4],y[3],y[1],y[2]]
                     sl.append(z)
             else:
-                for x in self.fl.Items:
+                for x in self.fl:
                     y = [x[0], x[1], x[2], x[3]]
                     sl.append(y)
             for y in sl:
@@ -178,20 +174,20 @@ class getDetail:
             ih.read()
 ##            if ih.found:
 
-        self.artiest = ih.Artiest
+        self.artiest = ih.artiest
         if type == 'studio':
-            self.titel = ih.Titel
-            self.label = ih.Label
-            self.jaar = ih.Jaar
-            self.volgnr = ih.Volgnr
-            self.producer = ih.Producer
-            self.credits = ih.Credits
+            self.titel = ih.titel
+            self.label = ih.label
+            self.jaar = ih.jaar
+            self.volgnr = ih.volgnr
+            self.producer = ih.producer
+            self.credits = ih.credits
         if type == 'live':
-            self.locatie = ih.Locatie
-            self.datum = ih.Datum
-        self.bezetting = ih.Bezetting
-        self.tracks = ih.Tracks
-        self.opnames = ih.Opnames
+            self.locatie = ih.locatie
+            self.datum = ih.datum
+        self.bezetting = ih.bezetting
+        self.tracks = ih.tracks
+        self.opnames = ih.opnames
 
     def setProp(self,property,value):
 
@@ -229,7 +225,7 @@ class setArtiest:
         ah = Artiest(Id)
         if Id != 0:
             ah.read()
-        if naam != ah.Naam:
+        if naam != ah.naam:
             ah.setNaam(naam)
         if sort != ah.sort:
             ah.setSort(sort)
