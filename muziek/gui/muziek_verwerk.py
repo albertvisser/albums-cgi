@@ -1,22 +1,39 @@
 import sys
+import collections
 sys.path.append("/home/albert/pythoneer/muziek/data")
 from studio import Album, albumlist
 from live import Concert, concertlist
 from artiest import Artiest, artiestenlijst
 
-class getArtiesten:
-    "lees de artiestentabel"
+def lees_artiesten():
+    """lees de artiestentabel
+    """
+    ids = []
+    namen = []
+    sortkeys = []
+    for id, naam, sortkey in artiestenlijst():
+        ids.append(id)
+        namen.append(naam)
+        sortkeys.append(sortkey)
+    return ids, namen, sortkeys
 
-    def __init__(self):
-        self.ArtiestIds = []
-        self.ArtiestNamen = []
-        self.ArtiestSortkeys = []
-        for y in artiestenlijst():
-            self.ArtiestIds.append(y[0])
-            self.ArtiestNamen.append(y[1])
-            self.ArtiestSortkeys.append(y[2])
+def update_artiest(id_, naam, sort):
+    """werk artiest bij in artiestentabel
+    """
+    ah = Artiest(id_)
+    if id_ != 0:
+        ah.read()
+    changed = False
+    if naam != ah.naam:
+        ah.setNaam(naam)
+        changed = True
+    if sort != ah.sort:
+        ah.setSort(sort)
+        changed = True
+    if changed:
+        ah.write()
 
-class getSelection:
+class Selection:
     "Doe een selectie op het "
     "input:"
     "  type: studio of live"
@@ -156,7 +173,7 @@ class getSelection:
                 self.sellist.append(h)
                 self.keylist.append(y[0])
 
-class getDetail:
+class Detail:
     "Zoek een album op in het betreffende bestand"
     "input:"
     "  type: studio of live"
@@ -218,15 +235,3 @@ class getDetail:
 ##    def insTrack(self,oldTrack,newTrack): #        "let op: insert BEFORE"
 ##    def addOpname(self,Opname):
 ##    def remOpname(self,Opname):
-
-class setArtiest:
-
-    def __init__(self,Id,naam,sort):
-        ah = Artiest(Id)
-        if Id != 0:
-            ah.read()
-        if naam != ah.naam:
-            ah.setNaam(naam)
-        if sort != ah.sort:
-            ah.setSort(sort)
-        ah.write()

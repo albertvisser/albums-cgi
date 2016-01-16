@@ -1,10 +1,11 @@
-from Tkinter import *
-import tkMessageBox 
+import sys
+if sys.version < '3':
+    from Tkinter import *
+    import tkMessageBox
+else:
+    from tkinter import *
 import Pmw
-from Muziek_verwerk import getArtiesten
-from Muziek_verwerk import setArtiest
-from Muziek_verwerk import getSelection
-from Muziek_verwerk import getDetail
+import muziek_verwerk as doe
 
 class Startscherm:
 
@@ -43,7 +44,7 @@ class Startscherm:
         self.selectStudioUitv.grid(row=r,column=1,sticky=W)
         self.selectStudioArtist = Pmw.ComboBox(self.fStudio,scrolledlist_items = self.app.ArtiestNamen,listbox_bg="#ffffff")
         self.selectStudioArtist.grid(row=r,column=2,sticky=W)
-        
+
         r = r + 1
         self.selectStudioTitel = Radiobutton(self.fStudio, text="3. Titel", variable=self.selStudio, value=3)
         self.selectStudioTitel.grid(row=r,column=1,sticky=W)
@@ -153,7 +154,7 @@ class Startscherm:
 ##
 ##        w = Label(self.fArtiest, text="Sorteer op:",fg="#c0c0c0")
 ##        w.grid(row=r,column=0,sticky=W)
-##        
+##
 ##        self.btnArtiest1 = Button(self.fArtiest, text="Nieuwe artiest opvoeren", command=self.ArtiestNew)
 ##        self.btnArtiest1.grid(row=r,column=1,sticky=W)
 ##
@@ -195,10 +196,10 @@ class Startscherm:
 
     def quit(self):
         self.master.quit
-        
+
 
 class Selectiescherm:
-    
+
     def __init__(self,app,type):
         self.app = app
         self.master = app.master
@@ -284,7 +285,7 @@ class Selectiescherm:
 
     def activateSelect(self):
         self.btnSelect.config(state=NORMAL)
-        
+
     def hide(self):
         self.fToolbar.grid_forget()
         self.fTitle.grid_forget()
@@ -292,19 +293,19 @@ class Selectiescherm:
         self.fDivide2.grid_forget()
         self.fDivide3.grid_forget()
         self.fSelect.grid_forget()
-        
+
     def SeltoDetail(self):
         self.app.seltodetail(self.Type)
-        
+
     def SeltoNew(self):
         self.app.seltodetail(self.Type,1)
-        
+
     def SeltoStart(self):
         self.app.seltostart()
 
 
 class Detailscherm:
-    
+
     def __init__(self,app,type):
         self.app = app
         self.master = app.master
@@ -375,7 +376,7 @@ class Detailscherm:
         self.fAlbum.grid(row=fr, padx=5, pady=5)
         fr = fr + 1
         r = 0
-        
+
         w = Label(self.fAlbum, text="Album:",width="15")
         w.grid(row=r,column=0,sticky=W)
         self.selectArtist = Pmw.ComboBox(self.fAlbum,scrolledlist_items = self.app.ArtiestNamen,listbox_bg="#ffffff")
@@ -424,7 +425,7 @@ class Detailscherm:
             r = r + 1
 
             w = Label(self.fAlbum, text="Credits:",width="15")
-            w.grid(row=r,column=0,sticky=W)           
+            w.grid(row=r,column=0,sticky=W)
             self.Credits = Text(self.fAlbum,width="80",height="4",wrap=WORD)
             self.Credits.delete(1.0,END)
             self.Credits.insert(END,self.app.dh.credits)
@@ -550,18 +551,18 @@ class Detailscherm:
 
     def DettoStart(self):
         self.app.dettostart()
-        
+
     def DettoSel(self):
         self.app.dettosel(self.Type)
 
     def DettoDetP(self):
         self.app.dettodet(self.Type,"PREV")
-       
+
     def DettoDetN(self):
         self.app.dettodet(self.Type,"NEXT")
 
 class Artiestenscherm:
-    
+
     def __init__(self,app):
         self.app = app
         self.artId = IntVar()
@@ -623,7 +624,7 @@ class Artiestenscherm:
 ##                hull_height = 200,
         )
         self.selectItem.grid(row=0,column=1,rowspan=2,sticky=W)
-        
+
         self.btnSelect = Button(self.fSelect, text="Wijzig gegevens", command=self.opendet,state=DISABLED)
         self.btnSelect.grid(row=0,column=2,sticky=NW, padx=5, pady=5)
         self.btnNew = Button(self.fSelect, text="Nieuwe artiest opvoeren", command=self.newdet)
@@ -632,7 +633,7 @@ class Artiestenscherm:
 
     def activateSelect(self):
         self.btnSelect.config(state=NORMAL)
-        
+
     def hide(self):
         self.fToolbar.grid_forget()
         self.fTitle.grid_forget()
@@ -640,7 +641,7 @@ class Artiestenscherm:
         self.fDivide2.grid_forget()
         self.fDivide3.grid_forget()
         self.fSelect.grid_forget()
-        
+
     def opendet(self):
         # zoek het geselecteerde item in de listbox
         items = self.selectItem.curselection()
@@ -649,12 +650,12 @@ class Artiestenscherm:
         except ValueError: pass
         if len(items) == 1:
             self.ix = items[0]
-        # zoek de bijpassende entry 
+        # zoek de bijpassende entry
         self.artId = self.app.ArtiestIds[self.ix]
         self.artNaam = self.app.ArtiestNamen[self.ix]
         self.artSort = self.app.ArtiestSkeys[self.ix]
         self.showdet()
-        
+
     def newdet(self):
         self.artId = 0
         self.artNaam = ""
@@ -680,13 +681,13 @@ class Artiestenscherm:
         self.btnUpdate.grid(row=2,column=1, padx=5, pady=5)
         self.btnCancel = Button(self.fDetail, text="Afbreken", command=self.hidedet)
         self.btnCancel.grid(row=2,column=2, padx=5, pady=5)
-        
+
     def wijzig(self):
         self.app.updateArtiest()
-        
+
     def hidedet(self):
         self.fDetail.grid_forget()
-        
+
     def ArttoStart(self):
         self.app.arttostart()
 
@@ -701,10 +702,7 @@ class Application:
         self.what = ""
         self.how = ""
         # initialiseren gegevens vanuit de database
-        ah = getArtiesten()
-        self.ArtiestNamen = ah.ArtiestNamen
-        self.ArtiestIds = ah.ArtiestIds
-        self.ArtiestSkeys = ah.ArtiestSortkeys
+        self.ArtiestIds, self.ArtiestNamen, self.ArtiestSkeys = doe.lees_artiesten()
 
         # initialiseren applicatiescherm
         self.master = Frame(master)
@@ -735,7 +733,7 @@ class Application:
             if wh == 1:
                 items = self.start.selectStudioArtist.curselection()
                 try:
-                    items = map(int, items)
+                    items = [x for x in map(int, items)]
                 except ValueError: pass
                 if len(items) == 1:
                     self.what = self.start.selectStudioArtist.get(items[0])
@@ -743,7 +741,7 @@ class Application:
                 self.what = self.start.txtStudio.get()
             items = self.start.selectStudioSort.curselection()
             try:
-                items = map(int, items)
+                items = [x for x in map(int, items)]
             except ValueError: pass
             if len(items) == 1:
                 self.how = self.start.selectStudioSort.get(items[0])
@@ -755,7 +753,7 @@ class Application:
             if wh == 1:
                 items = self.start.selectLiveArtist.curselection()
                 try:
-                    items = map(int, items)
+                    items = [x for x in map(int, items)]
                 except ValueError: pass
                 if len(items) == 1:
                     self.what = self.start.selectLiveArtist.get(items[0])
@@ -763,7 +761,7 @@ class Application:
                 self.what = self.start.txtLive.get()
             items = self.start.selectLiveSort.curselection()
             try:
-                items = map(int, items)
+                items = [x for x in map(int, items)]
             except ValueError: pass
             if len(items) == 1:
                 self.how = self.start.selectLiveSort.get(items[0])
@@ -776,18 +774,21 @@ class Application:
             self.how = self.how.lower()
 
         # haal de gegevens voor het nieuwe scherm op
-        self.vh = getSelection(type,self.which,self.what,self.how)
+        self.vh = doe.Selection(type,self.which,self.what,self.how)
         if len(self.vh.sellist) == 0:
             f = ('Geen %s albums gevonden' % type)
             if self.which != "niks":
                 f = ('Geen %s albums gevonden met "%s" in "%s"' % (type, self.what, self.which))
             # fout melden op het huidige scherm
-            tkMessageBox.showinfo("Helaas!",f)
+            if sys.version < '3':
+                tkMessageBox.showinfo("Helaas!",f)
+            else:
+                messagebox.INFO("Helaas!",f)
             return
 
         # sluit het vorige scherm
         self.start.hide()
-        
+
         # open een nieuw scherm
         if self.selExists:
             self.sel.show(type)
@@ -798,7 +799,7 @@ class Application:
     def starttodetail(self,type):
         "nieuw album opvoeren"
         # bepaal de op te halen gegevens
-        self.dh = getDetail(type,0)
+        self.dh = doe.Detail(type,0)
         self.ix = -1
         # sluit het vorige scherm
         self.start.hide()
@@ -813,7 +814,7 @@ class Application:
     def seltodetail(self,type,new=0):
         # bepaal de op te halen gegevens
         if new:
-            self.dh = getDetail(type,0)
+            self.dh = doe.Detail(type,0)
             self.ix = -1
             # basis voor de selectie al invullen
             self.dh.setProp(self.what,self.which)
@@ -821,13 +822,13 @@ class Application:
             # zoek het geselecteerde item in de listbox
             items = self.sel.selectItem.curselection()
             try:
-                items = map(int, items)
+                items = [x for x in map(int, items)]
             except ValueError: pass
             if len(items) == 1:
                 self.ix = items[0]
             # zoek de bijpassende entry in vh.keylist
             x = self.vh.keylist[self.ix]
-            self.dh = getDetail(type,x)
+            self.dh = doe.Detail(type,x)
         # sluit het vorige scherm
         self.sel.hide()
         # open een nieuw scherm
@@ -865,7 +866,7 @@ class Application:
             if self.ix < len(self.vh.keylist) - 1:
                 self.ix = self.ix + 1
         x = self.vh.keylist[self.ix]
-        self.dh = getDetail(type,x)
+        self.dh = doe.Detail(type,x)
         # sluit het vorige scherm
         self.det.hide()
         # open een nieuw scherm
@@ -873,23 +874,23 @@ class Application:
 
     def updatealbum(self,type):
         pass
-        
+
     def updatetracks(self,type):
         pass
-        
+
     def updateopnames(self,type):
         pass
 
     def starttoart(self):
         # haal de gegevens voor het nieuwe scherm op (is al gebeurd)
         self.artlist = []
-        for ix in range(len(self.ArtiestNamen)):
-            h = self.ArtiestNamen[ix] + " (" + self.ArtiestSkeys[ix] + ")"
+        for ix, naam in enumerate(self.ArtiestNamen):
+            h = "{} ({})".format(naam,  self.ArtiestSkeys[ix])
             self.artlist.append(h)
 
         # sluit het vorige scherm
         self.start.hide()
-        
+
         # open een nieuw scherm
         if self.artExists:
             self.art.show()
@@ -907,12 +908,12 @@ class Application:
         # haal de ingevulde gegevens op en werk ze bij
 ##        self.artNaam = self.art.artNaam.get()
 ##        self.artSort = self.art.artSort.get()
-        adh = setArtiest(self.art.artId,self.art.artNaam,self.art.artSort)
-    
+        adh = update_artiest(self.art.artId,self.art.artNaam,self.art.artSort)
+
 ##    def quit():
 ##        self.master.quit
-        
-        
+
+
 root = Tk()
 Pmw.initialise(root)
 
