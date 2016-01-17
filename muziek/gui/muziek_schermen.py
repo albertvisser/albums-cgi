@@ -1,9 +1,10 @@
 import sys
 if sys.version < '3':
     from Tkinter import *
-    import tkMessageBox
+    import tkMessageBox as mbox
 else:
     from tkinter import *
+    import tkinter.messagebox as mbox
 import Pmw
 import muziek_verwerk as doe
 
@@ -112,7 +113,7 @@ class Startscherm:
         self.selectLiveDatum = Radiobutton(self.fLive, text="4. Datum", variable=self.selLive, value=4)
         self.selectLiveDatum.grid(row=r,column=1,sticky=W)
         r = r + 1
-        self.selectLiveBezet = Radiobutton(self.fLive, text="5. Vermelding in Bezetting", variable=self.selLive, value=6)
+        self.selectLiveBezet = Radiobutton(self.fLive, text="5. Vermelding in Bezetting", variable=self.selLive, value=5)
         self.selectLiveBezet.grid(row=r,column=1,columnspan=2,sticky=W)
         r = r + 1
         w = Label(self.fLive, text="Zoektekst voor 3 - 5: ")
@@ -261,10 +262,10 @@ class Selectiescherm:
         w = Label(self.fSelect, text=tekst2)
         w.grid(row=0,column=0,sticky=NW)
 ##        self.selectItem = Listbox(self.fSelect,height=20,width=60,bg="#ffffff",exportselection=0)
-##        for item in self.app.vh.sellist:
+##        for item in self.app.sellist:
 ##            self.selectItem.insert(END, item)
         self.selectItem = Pmw.ScrolledListBox(self.fSelect,
-                items=self.app.vh.sellist,
+                items=self.app.sellist,
 ##                labelpos='nw',
 ##                label_text=tekst2,
                 listbox_height = 20,
@@ -335,7 +336,7 @@ class Detailscherm:
             if self.app.ix > 0:
                 self.btnPrevinSel.config(state=NORMAL)
             self.btnBacktoSel.config(state=NORMAL)
-            if self.app.ix < len(self.app.vh.keylist) - 1:
+            if self.app.ix < len(self.app.keylist) - 1:
                 self.btnNextinSel.config(state=NORMAL)
         self.btnBacktoStart = Button(self.fToolbar, text="Terug naar startscherm", command=self.DettoStart)
         self.btnBacktoStart.grid(row=0,column=3,sticky=E)
@@ -469,7 +470,7 @@ class Detailscherm:
         w = Label(self.fTracks, text="Tracks: ",width="15")
         w.grid(row=0,column=0,sticky=NW)
 ##        self.selectTrack = Listbox(self.fTracks,height=12,width=60,bg="#ffffff",exportselection=0)
-##        for item in self.app.vh.sellist:
+##        for item in self.app.sellist:
 ##            self.selectTrack.insert(END, item)
         self.selectTrack = Pmw.ScrolledListBox(self.fTracks,
                 items=self.app.dh.tracks,
@@ -494,7 +495,7 @@ class Detailscherm:
         w = Label(self.fOpnames, text="Opgenomen op: ",width="15")
         w.grid(row=0,column=0,sticky=NW)
 ##        self.selectOpname = Listbox(self.fOpnames,height=5,width=60,bg="#ffffff",exportselection=0)
-##        for item in self.app.vh.sellist:
+##        for item in self.app.sellist:
 ##            self.selectOpname.insert(END, item)
         self.selectOpname = Pmw.ScrolledListBox(self.fOpnames,
                 items=self.app.dh.opnames,
@@ -608,7 +609,7 @@ class Artiestenscherm:
         w = Label(self.fSelect, text=tekst2)
         w.grid(row=0,column=0,sticky=NW)
 ##        self.selectItem = Listbox(self.fSelect,height=20,width=60,bg="#ffffff",exportselection=0)
-##        for item in self.app.vh.sellist:
+##        for item in self.app.sellist:
 ##            self.selectItem.insert(END, item)
         self.selectItem = Pmw.ScrolledListBox(self.fSelect,
                 items=self.app.artlist,
@@ -646,7 +647,7 @@ class Artiestenscherm:
         # zoek het geselecteerde item in de listbox
         items = self.selectItem.curselection()
         try:
-            items = map(int, items)
+            items = [x for x in map(int, items)]
         except ValueError: pass
         if len(items) == 1:
             self.ix = items[0]
@@ -727,7 +728,7 @@ class Application:
         # bepaal de selectie
 ##        master = item.master
         if type == "studio":
-            whichitem = ["niks","artiest","titel","producer","credits","bezetting"]
+            whichitem = ["niks", "artiest", "titel", "producer", "credits", "bezetting"]
             wh = self.start.selStudio.get() - 1
             self.which = whichitem[wh]
             if wh == 1:
@@ -747,7 +748,7 @@ class Application:
                 self.how = self.start.selectStudioSort.get(items[0])
 
         if type == "live":
-            whichitem = ["niks","artiest","locatie","datum","bezetting"]
+            whichitem = ["niks", "artiest", "locatie", "datum", "bezetting"]
             wh = self.start.selLive.get() - 1
             self.which = whichitem[wh]
             if wh == 1:
@@ -774,16 +775,16 @@ class Application:
             self.how = self.how.lower()
 
         # haal de gegevens voor het nieuwe scherm op
-        self.vh = doe.Selection(type,self.which,self.what,self.how)
-        if len(self.vh.sellist) == 0:
-            f = ('Geen %s albums gevonden' % type)
-            if self.which != "niks":
-                f = ('Geen %s albums gevonden met "%s" in "%s"' % (type, self.what, self.which))
-            # fout melden op het huidige scherm
-            if sys.version < '3':
-                tkMessageBox.showinfo("Helaas!",f)
+        self.sellist, self.keylist = doe.selection(type,
+            self.which, self.what, self.how)
+        if len(self.sellist) == 0:
+            if self.which == "niks":
+                f = ('Geen %s albums gevonden' % type)
             else:
-                messagebox.INFO("Helaas!",f)
+                f = ('Geen %s albums gevonden met "%s" in "%s"' % (type,
+                    self.what, self.which))
+            # fout melden op het huidige scherm
+            mbox.showinfo("Helaas!", f)
             return
 
         # sluit het vorige scherm
@@ -794,30 +795,29 @@ class Application:
             self.sel.show(type)
         else:
             self.selExists = 1
-            self.sel = Selectiescherm(self,type)
+            self.sel = Selectiescherm(self, type)
 
     def starttodetail(self,type):
         "nieuw album opvoeren"
         # bepaal de op te halen gegevens
-        self.dh = doe.Detail(type,0)
+        self.dh = doe.Detail(type, 0)
         self.ix = -1
         # sluit het vorige scherm
         self.start.hide()
         # open een nieuw scherm
-#        self.start.show()
         if self.detExists:
             self.det.show(type)
         else:
             self.detExists = 1
-            self.det = Detailscherm(self,type)
+            self.det = Detailscherm(self, type)
 
     def seltodetail(self,type,new=0):
         # bepaal de op te halen gegevens
         if new:
-            self.dh = doe.Detail(type,0)
+            self.dh = doe.Detail(type, 0)
             self.ix = -1
             # basis voor de selectie al invullen
-            self.dh.setProp(self.what,self.which)
+            self.dh.set_prop(self.what, self.which)
         else:
             # zoek het geselecteerde item in de listbox
             items = self.sel.selectItem.curselection()
@@ -826,8 +826,8 @@ class Application:
             except ValueError: pass
             if len(items) == 1:
                 self.ix = items[0]
-            # zoek de bijpassende entry in vh.keylist
-            x = self.vh.keylist[self.ix]
+            # zoek de bijpassende entry in keylist
+            x = self.keylist[self.ix]
             self.dh = doe.Detail(type,x)
         # sluit het vorige scherm
         self.sel.hide()
@@ -858,14 +858,14 @@ class Application:
         self.sel.show(type)
 
     def dettodet(self,type,direction):
-        # zoek de bijpassende entry in vh.keylist
+        # zoek de bijpassende entry in keylist
         if direction == "PREV":
             if self.ix > 0:
                 self.ix = self.ix - 1
         if direction == "NEXT":
-            if self.ix < len(self.vh.keylist) - 1:
+            if self.ix < len(self.keylist) - 1:
                 self.ix = self.ix + 1
-        x = self.vh.keylist[self.ix]
+        x = self.keylist[self.ix]
         self.dh = doe.Detail(type,x)
         # sluit het vorige scherm
         self.det.hide()
