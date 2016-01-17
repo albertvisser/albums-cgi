@@ -138,7 +138,7 @@ class Select(object):
             elif self.sorteren == 'artiest':
                 # via de aparte sorteersleutel
                 for x in self.itemlist:
-                    ah = Artiest(x[1].decode('ISO-8859-1'), '0')
+                    ah = Artiest(x[1], '0')
                     y = ah.sort + ";#;" + x[2] + ";#;" + x[1] + ";#;" + x[0]
                     sortlist.append(y)
                 sortlist.sort()
@@ -183,7 +183,7 @@ class Select(object):
             elif self.sorteren == 'artiest':
                 # via de aparte sorteersleutel
                 for x in self.itemlist:
-                    ah = Artiest(x[1].decode('ISO-8859-1'), '0')
+                    ah = Artiest(x[1], '0')
                     y = ah.sort + ";#;" + x[2] + ";#;" + x[3] + ";#;" + x[1] + ";#;" + x[0]
                     sortlist.append(y)
                 sortlist.sort()

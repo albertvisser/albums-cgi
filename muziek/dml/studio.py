@@ -324,21 +324,21 @@ class SearchAlbum(ContentHandler):
                 self.in_titel = False
                 if self.list_titel:
                     self.listitem.append(self.titel)
-                if self.sel_titel and self.zoektitel in self.titel.upper():
+                if self.sel_titel and self.zoek_titel in self.titel.upper():
                     self.select_this = True
         elif name == 'label':
             if self.in_label:
                 self.in_label = False
                 if self.list_label:
                     self.listitem.append(self.label)
-                if self.sel_label and self.zoektitel in self.titel.upper():
+                if self.sel_label and self.zoek_label in self.label.upper():
                     self.select_this = True
         elif name == 'jaar':
             if self.in_jaar:
                 self.in_jaar = False
                 if self.list_jaar:
                     self.listitem.append(self.jaar)
-                if self.sel_jaar and self.zoekjaar in self.jaar.upper():
+                if self.sel_jaar and self.zoek_jaar in self.jaar.upper():
                     self.select_this = True
         elif name == 'volgnr':
             if self.in_volgnr:
@@ -352,21 +352,21 @@ class SearchAlbum(ContentHandler):
                 self.in_producer = False
                 if self.list_producer:
                     self.listitem.append(self.producer)
-                if self.sel_producer and self.zoekproducer in self.producer.upper():
+                if self.sel_producer and self.zoek_producer in self.producer.upper():
                     self.select_this = True
         elif name == 'credits':
             if self.in_credits:
                 self.in_credits = False
                 if self.list_credits:
                     self.listitem.append(self.credits)
-                if self.sel_credits and self.zoekcredits in self.credits.upper():
+                if self.sel_credits and self.zoek_credits in self.credits.upper():
                     self.select_this = True
         elif name == 'bezetting':
             if self.in_bezetting:
                 self.in_bezetting = False
                 if self.list_bezetting:
                     self.listitem.append(self.bezetting)
-                if self.sel_bezetting and self.zoekbezetting in self.bezetting.upper():
+                if self.sel_bezetting and self.zoek_bezetting in self.bezetting.upper():
                     self.select_this = True
 
 def albumlist(element_list, selection_criteria=None):

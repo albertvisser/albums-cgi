@@ -175,7 +175,7 @@ class SearchConcert(ContentHandler):
         self.zoek_artiest = self.zoek_locatie = self.zoek_datum = \
         self.zoek_bezetting = ""
         if searchlist == None:
-            self.selAlles = True
+            self.sel_alles = True
         else:
             if 'artiest' in searchlist:
                 self.sel_artiest = True
