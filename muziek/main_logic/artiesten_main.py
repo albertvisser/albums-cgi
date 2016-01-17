@@ -92,7 +92,7 @@ def wijzig_artiest(args):
     if sort is None:
         raise Fout("Geen hSort opgegegeven")
     if sel_id == "0":
-        sel_id = Artiest(0).Id
+        sel_id = Artiest(0).id
     ih = Artiest(sel_id)
     ih.read()
     if ih.found:
