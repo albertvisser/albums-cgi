@@ -1,3 +1,4 @@
+import os
 import common
 from films import Film
 
@@ -24,7 +25,7 @@ class Detail:
                 self.maakdetail()
 
     def maakdetail(self):
-        with open("%sdetail.html" % common.htmlpad) as fh:
+        with open(os.path.join(common.htmlpad, "detail.html")) as fh:
             for x in fh:
                 x = x.rstrip()
                 if x.startswith("<!--"):

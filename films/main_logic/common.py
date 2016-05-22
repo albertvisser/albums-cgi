@@ -1,8 +1,8 @@
 import os
 HERE = os.path.dirname(__file__)
-xmlpad = os.path.join(HERE, "data")
-htmlpad = os.path.join(os.path.dirname(os.path.dirname(HERE)),
-    "www/lemoncurry/films/")
+xmlpad = "../dml" # was os.path.join(HERE, "data")
+htmlpad = "../html" #was os.path.join(os.path.dirname(os.path.dirname(HERE)),
+    # "www/lemoncurry/films/")
 httppad = "http://www.lemoncurry.nl/films/"
 import sys
 sys.path.append(xmlpad) # pad naar de gegevens

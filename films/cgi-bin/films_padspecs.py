@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
 import sys
-htmlpad = "/home/albert/www/pythoneer/films"
-httppad = "http://films.pythoneer.nl/"
+htmlpad = "../html" # was "/home/albert/www/pythoneer/films"
+httppad = "http://films.lemoncurry.nl/" # was "http://films.pythoneer.nl/"
 cgipad = httppad + "cgi-bin/"
-progpad = "/home/albert/pythoneer/films"
+progpad = "../main_logic" # "/home/albert/pythoneer/films"
 sys.path.append(progpad)

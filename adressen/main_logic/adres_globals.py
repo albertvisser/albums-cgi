@@ -1,8 +1,8 @@
-xmlpad = "f:/pythoneer/adressen/data/"
+xmlpad = "../data/" # was "f:/pythoneer/adressen/data/"
 import sys
 sys.path.append(xmlpad[:-1]) # voor de dml-functies
-htmlpad = "f:/www/pythoneer/adressen/"
-httproot = "http://adr.pythoneer.nl/"
+htmlpad = "../html/" # was "f:/www/pythoneer/adressen/"
+httproot = "http:/adr.lemoncurry.nl" # was "http://adr.pythoneer.nl/"
 cssfile = httproot + "adressen.css"
 cgipad = httproot + "cgi-bin/"
 school_xmldoc = xmlpad + "Adressen_school.xml"

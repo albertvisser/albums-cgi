@@ -1,3 +1,4 @@
+import os.path
 import common
 from films import FilmList
 
@@ -34,7 +35,7 @@ class Select:
             sort_list = [(x[1], x[0]) for x in self.fl.items]
         sl = sort_list
 
-        with open("%sselect.html" % common.htmlpad) as fh:
+        with open(os.path.join(common.htmlpad, "select.html")) as fh:
             for x in fh:
                 x = x.rstrip()
                 if x == "<!-- selectie -->":
