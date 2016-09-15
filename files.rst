@@ -8,6 +8,8 @@ main site
         site icon
     index.html
         startpagina
+    files.rst
+        dit geval
 
 adressen app
 ------------
@@ -295,71 +297,10 @@ muziek\cgi\main_logic\
             Album uit muziek_studio_met
             Concert uit muziek_live_met
 
-muziek\django\
-..............
-
-    __init__.py
-        (lege) package indicator
-    manage.py
-        standaard maintenance utility
-    settings.py
-        site instellingen
-    models.py
-        data mapping
-    urls.py
-        url dispatcher
-    views.py
-        opbouwen van de pagina's
-    wsgi_handler.py
-        starter om server via wsgi te gebruiken
-
-muziek\django\muziek\
-.....................
-
-    __init__.py
-        (lege) package indicator
-    admin.py
-        aanmelden models op admin site
-    models.py
-        data mapping
-    urls.py
-        url dispatcher
-    views.py
-        opbouwen van de pagina's
-
-muziek\django\templates\
-........................
-
-    base.html
-        algemene basis layout
-    base_site.html
-        site specifieke aanvullingen
-    index.html
-        startpagina (nog met doctool)
-
-muziek\django\templates\muziek\
-...............................
-
-    artiest.html
-        invulsource opvoeren artiest
-    artiesten.html
-        invulsource lijst artiesten
-    base_site.html
-        basis layout subsite
-    detail.html
-        invulsource detailscherm
-    opname.html
-        invulsource wijzigen opnamegegevens
-    select.html
-        invulsource selectiescherm
-    start.html
-        invulsource startscherm
-    track.html
-        invulsource wijzigen trackgegevens
-
 muziek\gui\
 ...........
     gui frontend voor hetzelfde backend als de cgi versie
+    voortgezet (althans begonnen) als projects/album_gui maar dan met QtWebkit
 
     Muziek_schermen.py
         classes: Startscherm, Selectiescherm, Detailscherm, artiestenscherm,

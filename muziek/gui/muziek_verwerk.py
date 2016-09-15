@@ -1,6 +1,6 @@
 import sys
 import collections
-sys.path.append("/home/albert/pythoneer/muziek/data")
+sys.path.append("/home/albert/projects/pythoneer/muziek/dml")
 from studio import Album, albumlist
 from live import Concert, concertlist
 from artiest import Artiest, artiestenlijst
