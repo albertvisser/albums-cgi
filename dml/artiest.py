@@ -10,7 +10,7 @@ from xml.sax.saxutils import escape
 import _globals
 artiestenfile = os.path.join(_globals.xmlpad, "Artiesten.xml")
 
-class ZoekopNaam(ContentHandler):
+class _ZoekopNaam(ContentHandler):
     def __init__(self, naam):
         self.search_naam = naam
         self.founditem = 0
@@ -23,7 +23,7 @@ class ZoekopNaam(ContentHandler):
                 self.id = attrs.get('id', None)
                 self.sort = attrs.get('sort', None)
 
-class ZoekopId(ContentHandler):
+class _ZoekopId(ContentHandler):
     def __init__(self, id):
         self.search_id = id
         self.founditem = 0
@@ -36,7 +36,7 @@ class ZoekopId(ContentHandler):
                 self.naam = attrs.get('naam', None)
                 self.sort = attrs.get('sort', None)
 
-class ZoekNamen(ContentHandler):
+class _ZoekNamen(ContentHandler):
     def __init__(self):
         self.namenlijst = []
 
@@ -47,7 +47,7 @@ class ZoekNamen(ContentHandler):
             sort = attrs.get('sort', None)
             self.namenlijst.append((sort, id, naam))
 
-class UpdateArtiest(XMLGenerator):
+class _UpdateArtiest(XMLGenerator):
     "schrijf nieuwe songgegevens weg in XML-document"
     def __init__(self, item):
         self.ah = item
@@ -96,7 +96,7 @@ class UpdateArtiest(XMLGenerator):
 ##        XMLGenerator.endDocument(self)
         self.fh.close()
 
-class FindLaatste(ContentHandler):
+class _FindLaatste(ContentHandler):
     "Bevat het id van de laatst opgevoerde Artiest "
     def __init__(self):
         self.id = "0"
@@ -111,7 +111,7 @@ def artiestenlijst():
     namen = []
     parser = make_parser()
     parser.setFeature(feature_namespaces, 0)
-    dh = ZoekNamen()
+    dh = _ZoekNamen()
     parser.setContentHandler(dh)
     parser.parse(artiestenfile)
     if len(dh.namenlijst) > 0:
@@ -130,7 +130,7 @@ class Artiest(object):
         if self.zoek_item == "0" or self.zoek_item == 0:
             parser = make_parser()
             parser.setFeature(feature_namespaces, 0)
-            dh = FindLaatste()
+            dh = _FindLaatste()
             parser.setContentHandler(dh)
             parser.parse(self.fn)
             self.id = str(int(dh.id) + 1)
@@ -151,14 +151,14 @@ class Artiest(object):
             if self.id == "0" or self.id == 0:
                 parser = make_parser()
                 parser.setFeature(feature_namespaces, 0)
-                dh = FindLaatste()
+                dh = _FindLaatste()
                 parser.setContentHandler(dh)
                 parser.parse(self.fn)
                 self.id = str(int(dh.id) + 1)
             if find_by_name:
-                dh = ZoekopNaam(item)
+                dh = _ZoekopNaam(item)
             else:
-                dh = ZoekopId(item)
+                dh = _ZoekopId(item)
             # Tell the parser to use our handler
             parser.setContentHandler(dh)
             # Parse the input
@@ -174,6 +174,6 @@ class Artiest(object):
         shutil.copyfile(self.fn,self.fno)
         parser = make_parser()
         parser.setFeature(feature_namespaces, 0)
-        dh = UpdateArtiest(self)
+        dh = _UpdateArtiest(self)
         parser.setContentHandler(dh)
         parser.parse(self.fno)

@@ -11,7 +11,7 @@ import _globals
 datafile = os.path.join(_globals.xmlpad, "studio_met.xml") # naam van het xml bestand
 backup = os.path.join(_globals.xmlpad, "studio_met.xml.old") # naam van de backup van het xml bestand
 
-class FindAlbum(ContentHandler):
+class _FindAlbum(ContentHandler):
     "Bevat de gegevens van een bepaald item"
     def __init__(self, item):
         self.search_item = item		# keywaarde
@@ -120,7 +120,7 @@ class FindAlbum(ContentHandler):
                 self.in_track = False
 
 
-class FindLaatste(ContentHandler):
+class _FindLaatste(ContentHandler):
     "Bevat het id van het laatst opgevoerde Album "
     def __init__(self):
         self.id = "0"
@@ -131,7 +131,7 @@ class FindLaatste(ContentHandler):
             if int(item) > int(self.id):
                 self.id = item
 
-class UpdateAlbum(XMLGenerator):
+class _UpdateAlbum(XMLGenerator):
     "item updaten"
     def __init__(self, item):
         self.dh = item
@@ -201,7 +201,7 @@ class UpdateAlbum(XMLGenerator):
 ##        XMLGenerator.endDocument(self)
         self._out.close()
 
-class SearchAlbum(ContentHandler):
+class _SearchAlbum(ContentHandler):
     "Bevat de gegevens van een bepaald item"
     def __init__(self, itemlist, searchlist):
         self.list_artiest = self.list_titel = self.list_label = self.list_jaar = \
@@ -374,7 +374,7 @@ def albumlist(element_list, selection_criteria=None):
     itemlist = []
     parser = make_parser()
     parser.setFeature(feature_namespaces, 0)
-    dh = SearchAlbum(element_list, selection_criteria)
+    dh = _SearchAlbum(element_list, selection_criteria)
     parser.setContentHandler(dh)
     parser.parse(datafile)
     for x in dh.items:
@@ -401,7 +401,7 @@ class Album:
         if self.id == "0" or self.id == 0:
             parser = make_parser()
             parser.setFeature(feature_namespaces, 0)
-            dh = FindLaatste()
+            dh = _FindLaatste()
             parser.setContentHandler(dh)
             parser.parse(self.fn)
             self.id = str(int(dh.id) + 1)
@@ -409,7 +409,7 @@ class Album:
     def read(self):
         parser = make_parser()
         parser.setFeature(feature_namespaces, 0)
-        dh = FindAlbum(str(self.id))
+        dh = _FindAlbum(str(self.id))
         parser.setContentHandler(dh)
         parser.parse(self.fn)
         self.found = dh.itemfound
@@ -453,7 +453,7 @@ class Album:
         shutil.copyfile(self.fn,self.fno)
         parser = make_parser()
         parser.setFeature(feature_namespaces, 0)
-        dh = UpdateAlbum(self)
+        dh = _UpdateAlbum(self)
         parser.setContentHandler(dh)
         parser.parse(self.fno)
 
