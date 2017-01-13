@@ -117,7 +117,7 @@ def artiestenlijst():
     if len(dh.namenlijst) > 0:
         for x, y, z in sorted(dh.namenlijst):
             namen.append((y, z, x))
-        return namen
+    return namen
 
 class Artiest(object):
     def __init__(self, item, find_by_name=False):
