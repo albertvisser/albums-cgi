@@ -3,8 +3,9 @@
 def meldfout(melding, header="", css=""):
     # fout melden
     template = "<html><head>{}</head><body>{}{}</body></html>"
-    if css != "":
-        css = '<link rel="stylesheet" href="%s" type="text/css">' % css
+    if not css:
+        css = "http://muziek.lemoncurry.nl/muziek.css"
+    css = '<link rel="stylesheet" href="%s" type="text/css">' % css
     if header != "":
         header = '<h1><a>%s</a></h1><hr />' % header
     return template.format(css, header, melding)
