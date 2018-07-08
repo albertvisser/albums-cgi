@@ -53,12 +53,15 @@ def main():
         h.set_arg('tZoek', form.getfirst("hTZoek", None))
         h.set_arg('sorteren', form.getfirst("hSort", None))
     h.go()
-    print("Content-Type: text/html\n")     # HTML is following
+    print("Content-Type: text/html")     # HTML is following
+    if len(h.regels) > 2:
+        print("")     # end of headers
     for x in h.regels:
         try:
             print(x)
         except UnicodeEncodeError:
             print(x.encode("utf-8"))
+    print()
 
 if __name__ == '__main__':
 	main()
